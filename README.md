@@ -78,7 +78,7 @@ an open ledger on how donations are spent.
 
 <a href="https://stemgon.co.za">
 <!--   <img alt="Stemgon Logo" src="./logos/stripe_blurple.svg" width="250px" /> -->
-  <img alt="Stemgon Logo" src="(https://stemgon.co.za/stemgon_static/img/favicon.png)" width="250px" />
+  <img alt="Stemgon Logo" src="[https://stemgon.co.za/stemgon_static/img/favicon.png]" width="250px" />
 </a>
 
 ## Similar libraries
