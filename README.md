@@ -61,14 +61,14 @@ See [installation](https://dj-stripe.dev/dj-stripe/2.7/installation/) instructio
   <img alt="Stripe Logo" src="./logos/stripe_blurple.svg" width="250px" />
 </a>
 
-You can now become a sponsor to dj-stripe with [GitHub Sponsors](https://github.com/sponsors/dj-stripe).
+You can now become a sponsor to dj-payfast with [GitHub Sponsors](https://github.com/sponsors/dj-payfast).
 
 We've been bringing dj-stripe to the world for over 10 years and are excited to be able to start
 dedicating some real resources to the project.
 
 Your sponsorship helps us keep a team of maintainers actively working to improve dj-stripe and
 ensure it stays up-to-date with the latest Stripe changes. If you use dj-stripe commercially, we would encourage you to invest in its continued
-development by [signing up for a paid plan](https://github.com/sponsors/dj-stripe).
+development by [signing up for a paid plan](https://github.com/sponsors/dj-payfast).
 Corporate sponsors [receive priority support and development time](project/support.md).
 
 All contributions through GitHub sponsors flow into our [Open Collective](https://opencollective.com/dj-stripe), which holds our funds and keeps
@@ -76,8 +76,9 @@ an open ledger on how donations are spent.
 
 ## Our Gold sponsors
 
-<a href="https://stripe.com">
-  <img alt="Stripe Logo" src="./logos/stripe_blurple.svg" width="250px" />
+<a href="https://stemgon.co.za">
+<!--   <img alt="Stemgon Logo" src="./logos/stripe_blurple.svg" width="250px" /> -->
+  <img alt="Stemgon Logo" src="(https://stemgon.co.za/stemgon_static/img/favicon.png)" width="250px" />
 </a>
 
 ## Similar libraries
