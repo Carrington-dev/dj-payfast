@@ -22,13 +22,13 @@ The full documentation is available [on Read the Docs](https://dj-stripe.github.
 
 ## Features
 
--   Stripe Core
--   Stripe Billing
--   Stripe Cards (JS v2) and Sources (JS v3)
+-   Payfast Core
+-   Payfast Billing
+-   Payfast Cards (JS v2) and Sources (JS v3)
 -   Payment Methods and Payment Intents (SCA support)
 -   Support for multiple accounts and API keys
--   Stripe Connect (partial support)
--   Tested with Stripe API `2020-08-27` (see [API versions](api_versions.md#dj-stripe_latest_tested_version))
+-   Payfast Connect (partial support)
+-   Tested with Payfast API `2020-08-27` (see [API versions](api_versions.md#dj-stripe_latest_tested_version))
 
 ## Requirements
 
