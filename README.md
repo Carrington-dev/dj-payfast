@@ -78,7 +78,7 @@ an open ledger on how donations are spent.
 
 <a href="https://Payfast.io">
 <!--   <img alt="Stemgon Logo" src="./logos/stripe_blurple.svg" width="250px" /> -->
-  <img alt="Payfast Logo" src="[./assets/img/payfast.webp]" width="250px" />
+  <img alt="Payfast Logo" src="./assets/img/payfast.webp" width="250px" />
 </a>
 
 ## Similar libraries
