@@ -1,2 +1,4 @@
 django
 pytest
+requests  
+pytest-django
