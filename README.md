@@ -18,7 +18,7 @@ webhook endpoint and start receiving model updates. You will then have
 a copy of all the Stripe models available in Django models, as soon as
 they are updated!
 
-The full documentation is available [on Read the Docs](https://dj-stripe.github.io/dj-stripe/).
+The full documentation is available [on Read the Docs](https://dj-payfast.github.io/dj-payfast/).
 
 ## Features
 
@@ -28,7 +28,7 @@ The full documentation is available [on Read the Docs](https://dj-stripe.github.
 -   Payment Methods and Payment Intents (SCA support)
 -   Support for multiple accounts and API keys
 -   Payfast Connect (partial support)
--   Tested with Payfast API `2020-08-27` (see [API versions](api_versions.md#dj-stripe_latest_tested_version))
+-   Tested with Payfast API `2020-08-27` (see [API versions](api_versions.md#dj-payfast_latest_tested_version))
 
 ## Requirements
 
@@ -76,9 +76,9 @@ an open ledger on how donations are spent.
 
 ## Our Gold sponsors
 
-<a href="https://payfast.io">
+<a href="https://Payfast.io">
 <!--   <img alt="Stemgon Logo" src="./logos/stripe_blurple.svg" width="250px" /> -->
-  <img alt="Stemgon Logo" src="[assets/img/favicon.png]" width="250px" />
+  <img alt="Payfast Logo" src="[assets/img/payfast.webp]" width="250px" />
 </a>
 
 ## Similar libraries
