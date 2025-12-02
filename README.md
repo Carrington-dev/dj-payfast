@@ -1,13 +1,13 @@
 # dj-payfast - Django + Payfast Made Easy
 
-[![Stripe Verified Partner](https://img.shields.io/static/v1?label=Stripe&message=Verified%20Partner&color=red&style=for-the-badge)](https://stripe.com/docs/libraries#community-libraries)
+[![payfast Verified Partner](https://img.shields.io/static/v1?label=payfast&message=Verified%20Partner&color=red&style=for-the-badge)](https://payfast.com/docs/libraries#community-libraries)
 <br>
 
-[![CI tests](https://github.com/dj-stripe/dj-stripe/actions/workflows/ci.yml/badge.svg)](https://github.com/dj-stripe/dj-stripe/actions/workflows/ci.yml)
-[![Package Downloads](https://img.shields.io/pypi/dm/dj-stripe)](https://pypi.org/project/dj-stripe/)
-[![Documentation](https://img.shields.io/static/v1?label=Docs&message=READ&color=informational&style=plastic)](https://dj-stripe.github.io/dj-stripe/)
-[![Sponsor dj-stripe](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=red&style=plastic)](https://github.com/sponsors/dj-stripe)
-[![MIT License](https://img.shields.io/static/v1?label=License&message=MIT&color=informational&style=plastic)](https://github.com/sponsors/dj-stripe)
+[![CI tests](https://github.com/dj-payfast/dj-payfast/actions/workflows/ci.yml/badge.svg)](https://github.com/dj-payfast/dj-payfast/actions/workflows/ci.yml)
+[![Package Downloads](https://img.shields.io/pypi/dm/dj-payfast)](https://pypi.org/project/dj-payfast/)
+[![Documentation](https://img.shields.io/static/v1?label=Docs&message=READ&color=informational&style=plastic)](https://dj-payfast.github.io/dj-payfast/)
+[![Sponsor dj-payfast](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=red&style=plastic)](https://github.com/sponsors/dj-payfast)
+[![MIT License](https://img.shields.io/static/v1?label=License&message=MIT&color=informational&style=plastic)](https://github.com/sponsors/dj-payfast)
 
 PayFast Models for Django.
 
@@ -15,7 +15,7 @@ PayFast Models for Django.
 
 dj-payfast implements all of the Payfast models intergration, for Django. Set up your
 webhook endpoint and start receiving model updates. You will then have
-a copy of all the Stripe models available in Django models, as soon as
+a copy of all the payfast models available in Django models, as soon as
 they are updated!
 
 The full documentation is available [on Read the Docs](https://dj-payfast.github.io/dj-payfast/).
@@ -43,7 +43,7 @@ The full documentation is available [on Read the Docs](https://dj-payfast.github
 
 ## Installation
 
-See [installation](https://dj-stripe.dev/dj-stripe/2.7/installation/) instructions.
+See [installation](https://dj-payfast.dev/dj-payfast/2.7/installation/) instructions.
 
 ## Changelog
 
@@ -57,27 +57,27 @@ See [installation](https://dj-stripe.dev/dj-stripe/2.7/installation/) instructio
 
 ## Funding and Support
 
-<a href="https://stripe.com">
+<a href="https://payfast.com">
   <img alt="Payfast Logo" src="./assets/img/payfast.webp" width="250px" />
 </a>
 
 You can now become a sponsor to dj-payfast with [GitHub Sponsors](https://github.com/sponsors/dj-payfast).
 
-We've been bringing dj-stripe to the world for over 10 years and are excited to be able to start
+We've been bringing dj-payfast to the world for over 10 years and are excited to be able to start
 dedicating some real resources to the project.
 
-Your sponsorship helps us keep a team of maintainers actively working to improve dj-stripe and
-ensure it stays up-to-date with the latest Stripe changes. If you use dj-stripe commercially, we would encourage you to invest in its continued
+Your sponsorship helps us keep a team of maintainers actively working to improve dj-payfast and
+ensure it stays up-to-date with the latest payfast changes. If you use dj-payfast commercially, we would encourage you to invest in its continued
 development by [signing up for a paid plan](https://github.com/sponsors/dj-payfast).
 Corporate sponsors [receive priority support and development time](project/support.md).
 
-All contributions through GitHub sponsors flow into our [Open Collective](https://opencollective.com/dj-stripe), which holds our funds and keeps
+All contributions through GitHub sponsors flow into our [Open Collective](https://opencollective.com/dj-payfast), which holds our funds and keeps
 an open ledger on how donations are spent.
 
 ## Our Gold sponsors
 
 <a href="https://Payfast.io">
-<!--   <img alt="Stemgon Logo" src="./logos/stripe_blurple.svg" width="250px" /> -->
+<!--   <img alt="Stemgon Logo" src="./logos/payfast_blurple.svg" width="250px" /> -->
   <img alt="Payfast Logo" src="./assets/img/payfast.webp" width="250px" />
 </a>
 
