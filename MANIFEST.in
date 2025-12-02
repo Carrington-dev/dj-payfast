@@ -1,0 +1,92 @@
+# MANIFEST.in
+# Include/exclude files for packaging dj-payfast
+
+# Include documentation
+include README.md
+include LICENSE
+include CHANGELOG.md
+include CONTRIBUTING.md
+
+# Include requirements
+include requirements.txt
+include requirements-test.txt
+include requirements-dev.txt
+
+# Include configuration files
+include setup.py
+include setup.cfg
+include pyproject.toml
+include pytest.ini
+include .flake8
+include .coveragerc
+
+# Include package data
+recursive-include payfast *.py
+recursive-include payfast/templates *.html
+recursive-include payfast/static *.css *.js *.png *.jpg *.svg
+recursive-include payfast/migrations *.py
+
+# Include documentation
+recursive-include docs *.rst *.py *.md *.txt
+recursive-include docs/_static *
+recursive-include docs/_templates *
+
+# Include tests
+recursive-include tests *.py
+
+# Include assets
+recursive-include assets *.svg *.png *.jpg *.webp
+
+# Exclude unnecessary files
+global-exclude __pycache__
+global-exclude *.py[co]
+global-exclude *.so
+global-exclude .DS_Store
+global-exclude *.swp
+global-exclude *.swo
+global-exclude *~
+
+# Exclude development files
+exclude .gitignore
+exclude .gitattributes
+exclude .editorconfig
+exclude .pre-commit-config.yaml
+
+# Exclude build files
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude * .git*
+recursive-exclude * .tox
+recursive-exclude * .pytest_cache
+recursive-exclude * .coverage
+recursive-exclude * htmlcov
+recursive-exclude * dist
+recursive-exclude * build
+recursive-exclude * *.egg-info
+
+# Exclude IDE files
+recursive-exclude * .vscode
+recursive-exclude * .idea
+recursive-exclude * *.sublime-*
+
+# Exclude database files
+exclude db.sqlite3
+exclude *.sqlite3
+exclude *.db
+
+# Exclude virtual environment
+exclude .venv
+exclude venv
+exclude env
+
+# Exclude logs
+exclude *.log
+
+# Prune unnecessary directories
+prune .github
+prune example_project
+prune htmlcov
+prune .pytest_cache
+prune .tox
+prune build
+prune dist

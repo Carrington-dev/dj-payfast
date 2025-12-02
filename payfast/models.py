@@ -90,7 +90,7 @@ class PayFastNotification(models.Model):
     payment = models.ForeignKey(PayFastPayment, on_delete=models.CASCADE, related_name='notifications', null=True, blank=True)
     
     # Raw notification data
-    raw_data = models.JSONField()
+    raw_data = models.JSONField(default=dict)
     
     # Validation
     is_valid = models.BooleanField(default=False)
