@@ -32,4 +32,10 @@ class PayFastModelsTestCase(TestCase):
         self.assertEqual(self.notification.payment, self.payment)
         self.assertEqual(self.notification.payment.m_payment_id, 'TEST12345')
         self.assertEqual(self.notification.payment.amount, 100.00)
-        # self.assertEqual(self.notification.payment_status, 'COMPLETE')
+        self.assertEqual(self.notification.payment.status, 'pending')
+
+    def test_mark_complete(self):
+        """Test marking a payment as complete"""
+        self.payment.mark_complete()
+        self.assertEqual(self.payment.status, 'complete')
+        self.assertIsNotNone(self.payment.completed_at)
