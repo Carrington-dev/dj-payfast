@@ -96,4 +96,4 @@ class PayFastNotifyView(View):
         else:
             payment.mark_failed()
         
-        return HttpResponse('OK', status=2
+        return HttpResponse('OK', status=200)
