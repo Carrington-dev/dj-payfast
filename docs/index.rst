@@ -17,8 +17,8 @@ Welcome to dj-payfast's documentation!
    :target: https://pypi.org/project/dj-payfast/
    :alt: Django versions
 
-.. image:: https://img.shields.io/github/license/yourusername/dj-payfast.svg
-   :target: https://github.com/yourusername/dj-payfast/blob/main/LICENSE
+.. image:: https://img.shields.io/github/license/carrington-dev/dj-payfast.svg
+   :target: https://github.com/carrington-dev/dj-payfast/blob/main/LICENSE
    :alt: License
 
 Overview
@@ -106,7 +106,7 @@ Or install from source:
 
 .. code-block:: bash
 
-   git clone https://github.com/yourusername/dj-payfast.git
+   git clone https://github.com/carrington-dev/dj-payfast.git
    cd dj-payfast
    pip install -e .
 
@@ -203,8 +203,8 @@ PayFast Resources
 Community & Support
 -------------------
 
-* **GitHub**: `github.com/yourusername/dj-payfast <https://github.com/yourusername/dj-payfast>`_
-* **Issues**: `GitHub Issue Tracker <https://github.com/yourusername/dj-payfast/issues>`_
+* **GitHub**: `github.com/carrington-dev/dj-payfast <https://github.com/carrington-dev/dj-payfast>`_
+* **Issues**: `GitHub Issue Tracker <https://github.com/carrington-dev/dj-payfast/issues>`_
 * **PyPI**: `pypi.org/project/dj-payfast <https://pypi.org/project/dj-payfast>`_
 * **Email**: support@example.com
 
