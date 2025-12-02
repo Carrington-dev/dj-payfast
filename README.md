@@ -58,7 +58,7 @@ See [installation](https://dj-stripe.dev/dj-stripe/2.7/installation/) instructio
 ## Funding and Support
 
 <a href="https://stripe.com">
-  <img alt="Stripe Logo" src="./logos/stripe_blurple.svg" width="250px" />
+  <img alt="Payfast Logo" src="./assets/img/payfast.webp" width="250px" />
 </a>
 
 You can now become a sponsor to dj-payfast with [GitHub Sponsors](https://github.com/sponsors/dj-payfast).
@@ -76,9 +76,9 @@ an open ledger on how donations are spent.
 
 ## Our Gold sponsors
 
-<a href="https://stemgon.co.za">
+<a href="https://payfast.io">
 <!--   <img alt="Stemgon Logo" src="./logos/stripe_blurple.svg" width="250px" /> -->
-  <img alt="Stemgon Logo" src="[https://stemgon.co.za/stemgon_static/img/favicon.png]" width="250px" />
+  <img alt="Stemgon Logo" src="[assets/img/favicon.png]" width="250px" />
 </a>
 
 ## Similar libraries
