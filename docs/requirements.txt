@@ -1,0 +1,17 @@
+# Documentation build requirements for Read the Docs
+
+# Sphinx and extensions
+sphinx>=5.0.0
+sphinx-rtd-theme>=1.0.0
+sphinx-copybutton>=0.5.0
+sphinx-autobuild>=2021.3.14
+
+# Django (required for autodoc)
+Django>=3.2
+
+# Additional Sphinx extensions
+sphinxcontrib-napoleon>=0.7
+myst-parser>=0.18.0
+
+# dj-payfast dependencies
+requests>=2.25.0
