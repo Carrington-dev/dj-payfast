@@ -356,7 +356,8 @@ copybutton_prompt_text = r">>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: 
 copybutton_prompt_is_regexp = True
 
 # -- Custom configuration ----------------------------------------------------
-
+html_static_path = ['_static']
+   
 # Add custom CSS
 def setup(app):
     """Add custom configuration"""
@@ -375,3 +376,4 @@ nitpicky = False
 nitpick_ignore = [
     ('py:class', 'django.db.models.Model'),
 ]
+
