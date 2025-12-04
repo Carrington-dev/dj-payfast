@@ -1,0 +1,46 @@
+# .readthedocs.yaml
+# Read the Docs configuration file for dj-payfast
+# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
+
+version: 2
+
+# Set the OS, Python version and other tools you might need
+build:
+  os: ubuntu-22.04
+  tools:
+    python: "3.11"
+  jobs:
+    post_create_environment:
+      # Install poetry or other dependencies if needed
+      - pip install poetry || echo "Poetry installation optional"
+    post_install:
+      # Install any additional requirements
+      - echo "Build environment ready"
+
+# Build documentation in the "docs/" directory with Sphinx
+sphinx:
+  configuration: docs/conf.py
+  fail_on_warning: false
+
+# Optionally build your docs in additional formats such as PDF and ePub
+formats:
+  - pdf
+  - epub
+
+# Python configuration
+python:
+  install:
+    - requirements: docs/requirements.txt
+    - requirements: requirements.txt
+    - method: pip
+      path: .
+      extra_requirements:
+        - docs
+
+# Additional settings
+search:
+  ranking:
+    'docs/installation.rst': 2
+    'docs/quickstart.rst': 3
+  ignore:
+    - '404.html'
