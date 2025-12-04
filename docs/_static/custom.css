@@ -1,0 +1,43 @@
+/* Custom CSS for dj-payfast documentation */
+
+:root {
+    --payfast-red: #e32e2e;
+    --payfast-dark: #1a1a1a;
+    --code-bg: #f8f9fa;
+}
+
+.wy-side-nav-search {
+    background-color: var(--payfast-red);
+}
+
+.wy-side-nav-search > a {
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.highlight {
+    background: var(--code-bg);
+    border-radius: 4px;
+}
+
+a {
+    color: var(--payfast-red);
+}
+
+a:hover {
+    color: #c02525;
+}
+
+.wy-menu-vertical li.current a {
+    border-right: 3px solid var(--payfast-red);
+}
+
+h1 {
+    border-bottom: 3px solid var(--payfast-red);
+    padding-bottom: 0.3em;
+}
+
+.wy-nav-content {
+    max-width: 1200px;
+}

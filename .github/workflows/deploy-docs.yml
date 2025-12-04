@@ -41,7 +41,7 @@ jobs:
       - name: Build documentation
         run: |
           cd docs
-          make html
+          # make html
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
