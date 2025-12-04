@@ -57,8 +57,8 @@ See [installation](https://dj-payfast.dev/dj-payfast/2.7/installation/) instruct
 
 ## Funding and Support
 
-<a href="https://payfast.com">
-  <img alt="Payfast Logo" src="./assets/img/payfast.webp" width="250px" />
+<a href="https://payfast.io">
+  <img alt="Payfast Logo" src="https://github.com/Carrington-dev/dj-payfast/blob/main/assets/img/payfast.webp" width="250px" />
 </a>
 
 You can now become a sponsor to dj-payfast with [GitHub Sponsors](https://github.com/sponsors/dj-payfast).
@@ -76,9 +76,9 @@ an open ledger on how donations are spent.
 
 ## Our Gold sponsors
 
-<a href="https://Payfast.io">
+<a href="https://payfast.io">
 <!--   <img alt="Stemgon Logo" src="./logos/payfast_blurple.svg" width="250px" /> -->
-  <img alt="Payfast Logo" src="./assets/img/payfast.webp" width="250px" />
+  <img alt="Payfast Logo" src="https://github.com/Carrington-dev/dj-payfast/blob/main/assets/img/payfast.webp" width="250px" />
 </a>
 
 ## Similar libraries
