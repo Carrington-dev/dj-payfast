@@ -7,7 +7,7 @@ We welcome contributions! Here's how to get started.
 1. Fork the repository
 2. Clone your fork:
 ```bash
-   git clone https://github.com/your-username/dj-payfast.git
+   git clone https://github.com/carrington-dev/dj-payfast.git
    cd dj-payfast
 ```
 
