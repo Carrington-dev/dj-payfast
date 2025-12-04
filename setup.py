@@ -28,7 +28,7 @@ setup(
     project_urls={
         'Bug Reports': 'https://github.com/carrington-dev/dj-payfast/issues',
         'Source': 'https://github.com/carrington-dev/dj-payfast',
-        'Documentation': 'https://dj-payfast.github.io/dj-payfast/',
+        'Documentation': 'https://carrington-dev.github.io/dj-payfast/',
     },
     packages=find_packages(exclude=['tests*', 'docs*', 'example_project*']),
     include_package_data=True,
