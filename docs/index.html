@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dj-payfast - PayFast Models for Django</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #3b82f6;
+            --secondary: #8b5cf6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --code-bg: #1e293b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-large {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border: 1px solid rgba(59,130,246,0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(59,130,246,0.15);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-description {
+            color: var(--gray);
+        }
+
+        /* Installation Section */
+        .install-section {
+            background: var(--light);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+
+        .code-block {
+            background: var(--code-bg);
+            color: #e5e7eb;
+            padding: 1.5rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .code-block::before {
+            content: attr(data-lang);
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .code-comment {
+            color: #6b7280;
+        }
+
+        .code-string {
+            color: #98c379;
+        }
+
+        /* Steps */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .step {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        /* Requirements Grid */
+        .requirements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .requirement-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .requirement-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        /* Sponsors Section */
+        .sponsors-section {
+            background: linear-gradient(135deg, rgba(59,130,246,0.05), rgba(139,92,246,0.05));
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .sponsor-logo {
+            max-width: 250px;
+            margin: 2rem auto;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .step {
+                flex-direction: column;
+            }
+        }
+
+        /* Alert Box */
+        .alert {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .alert strong {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Documentation Links */
+        .doc-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .doc-link {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-decoration: none;
+            color: var(--dark);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .doc-link:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(59,130,246,0.15);
+        }
+
+        .doc-link h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .doc-link i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <i class="fas fa-credit-card"></i>
+                dj-payfast
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#quickstart">Quick Start</a></li>
+                <li><a href="#documentation">Docs</a></li>
+                <li><a href="#sponsor">Sponsor</a></li>
+                <li>
+                    <a href="https://github.com/Carrington-dev/dj-payfast" class="btn btn-primary">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>PayFast Models for Django</h1>
+            <p>Complete PayFast payment gateway integration for Django. Set up your webhook endpoint and start receiving model updates instantly. A copy of all PayFast models available in Django, as soon as they are updated!</p>
+            
+            <div class="badges">
+                <span class="badge">
+                    <i class="fab fa-python"></i> Python ≥3.8
+                </span>
+                <span class="badge">
+                    <i class="fas fa-server"></i> Django ≥3.2
+                </span>
+                <span class="badge">
+                    <i class="fas fa-database"></i> PostgreSQL Ready
+                </span>
+                <span class="badge">
+                    <i class="fas fa-check-circle"></i> Production Tested
+                </span>
+                <span class="badge">
+                    <i class="fas fa-shield-alt"></i> Secure
+                </span>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="#installation" class="btn btn-primary btn-large">
+                    <i class="fas fa-download"></i> Get Started
+                </a>
+                <a href="https://github.com/Carrington-dev/dj-payfast" class="btn btn-secondary btn-large">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <div class="container">
+        <section id="features" class="section">
+            <h2 class="section-title">Why dj-payfast?</h2>
+            <p class="section-subtitle">Everything you need for PayFast integration in Django</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title">Complete Integration</h3>
+                    <p class="feature-description">Full implementation of PayFast models for Django with webhook support and instant model updates.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3 class="feature-title">PayFast Core & Billing</h3>
+                    <p class="feature-description">Support for PayFast Core, Billing, Cards (JS v2), Sources (JS v3), and Payment Methods with SCA support.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Built-in Security</h3>
+                    <p class="feature-description">Automatic signature verification, IP validation, and server-side validation with PayFast.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3 class="feature-title">Multiple Accounts</h3>
+                    <p class="feature-description">Support for multiple PayFast accounts and API keys in a single Django project.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 class="feature-title">Webhook Handling</h3>
+                    <p class="feature-description">Automatic ITN (Instant Transaction Notification) processing with complete audit trail.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="feature-title">Admin Integration</h3>
+                    <p class="feature-description">Full Django admin integration for managing payments and viewing transaction history.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Requirements Section -->
+        <section class="section">
+            <h2 class="section-title">Requirements</h2>
+            <p class="section-subtitle">Tested with PayFast API 2020-08-27</p>
+
+            <div class="requirements">
+                <div class="requirement-item">
+                    <h4><i class="fab fa-python"></i> Python</h4>
+                    <p>Version 3.8 or higher</p>
+                </div>
+
+                <div class="requirement-item">
+                    <h4><i class="fas fa-server"></i> Django</h4>
+                    <p>Version 3.2 - 5.0</p>
+                </div>
+
+                <div class="requirement-item">
+                    <h4><i class="fas fa-database"></i> PostgreSQL</h4>
+                    <p>Version 12+ (Recommended)</p>
+                </div>
+
+                <div class="requirement-item">
+                    <h4><i class="fas fa-database"></i> MySQL/MariaDB</h4>
+                    <p>MariaDB ≥10.5 or MySQL ≥8.0</p>
+                </div>
+
+                <div class="requirement-item">
+                    <h4><i class="fas fa-cog"></i> Additional</h4>
+                    <p>Nginx, Gunicorn, Docker, Celery</p>
+                </div>
+
+                <div class="requirement-item">
+                    <h4><i class="fas fa-envelope"></i> Email</h4>
+                    <p>Email setup configured</p>
+                </div>
+            </div>
+
+            <div class="alert">
+                <strong><i class="fas fa-exclamation-triangle"></i> Note:</strong>
+                SQLite is not recommended for production use. Minimum version 3.26 required if used.
+            </div>
+        </section>
+
+        <!-- Installation Section -->
+        <section id="installation" class="section">
+            <div class="install-section">
+                <h2 class="section-title">Installation</h2>
+                <p class="section-subtitle">Get started in minutes</p>
+
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Install via pip</h3>
+                            <p>Install the latest version from PyPI</p>
+                            <div class="code-block" data-lang="bash">pip install dj-payfast</div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Add to INSTALLED_APPS</h3>
+                            <p>Update your Django settings.py</p>
+                            <div class="code-block" data-lang="python">INSTALLED_APPS = [
+    <span class="code-string">'django.contrib.admin'</span>,
+    <span class="code-string">'django.contrib.auth'</span>,
+    <span class="code-comment"># ... other apps</span>
+    <span class="code-string">'payfast'</span>,  <span class="code-comment"># Add this</span>
+]</div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Configure Settings</h3>
+                            <p>Add your PayFast credentials</p>
+                            <div class="code-block" data-lang="python"><span class="code-comment"># PayFast Configuration</span>
+PAYFAST_MERCHANT_ID = <span class="code-string">'your_merchant_id'</span>
+PAYFAST_MERCHANT_KEY = <span class="code-string">'your_merchant_key'</span>
+PAYFAST_PASSPHRASE = <span class="code-string">'your_passphrase'</span>
+PAYFAST_TEST_MODE = True  <span class="code-comment"># False for production</span></div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Add URLs</h3>
+                            <p>Include PayFast URLs in your project</p>
+                            <div class="code-block" data-lang="python">urlpatterns = [
+    path(<span class="code-string">'admin/'</span>, admin.site.urls),
+    path(<span class="code-string">'payfast/'</span>, include(<span class="code-string">'payfast.urls'</span>)),
+]</div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3>Run Migrations</h3>
+                            <p>Create the necessary database tables</p>
+                            <div class="code-block" data-lang="bash">python manage.py migrate</div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h3>Start Accepting Payments!</h3>
+                            <p>You're all set to integrate PayFast payments</p>
+                            <div class="code-block" data-lang="python"><span class="code-comment"># Create a payment</span>
+payment = PayFastPayment.objects.create(
+    user=request.user,
+    m_payment_id=str(uuid.uuid4()),
+    amount=<span class="code-string">199.99</span>,
+    item_name=<span class="code-string">'Premium Subscription'</span>,
+    email_address=request.user.email,
+)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Start Section -->
+        <section id="quickstart" class="section">
+            <h2 class="section-title">Quick Start Example</h2>
+            <p class="section-subtitle">Create your first payment in minutes</p>
+
+            <div class="code-block" data-lang="python"><span class="code-comment"># views.py</span>
+from django.shortcuts import render
+from payfast.models import PayFastPayment
+from payfast.forms import PayFastPaymentForm
+import uuid
+
+def checkout_view(request):
+    <span class="code-comment"># Create a payment</span>
+    payment = PayFastPayment.objects.create(
+        user=request.user,
+        m_payment_id=str(uuid.uuid4()),
+        amount=<span class="code-string">299.99</span>,
+        item_name=<span class="code-string">'Premium Subscription'</span>,
+        email_address=request.user.email,
+    )
+    
+    <span class="code-comment"># Generate payment form</span>
+    form = PayFastPaymentForm(initial={
+        <span class="code-string">'amount'</span>: payment.amount,
+        <span class="code-string">'item_name'</span>: payment.item_name,
+        <span class="code-string">'m_payment_id'</span>: payment.m_payment_id,
+        <span class="code-string">'email_address'</span>: payment.email_address,
+        <span class="code-string">'notify_url'</span>: request.build_absolute_uri(<span class="code-string">'/payfast/notify/'</span>),
+    })
+    
+    return render(request, <span class="code-string">'checkout.html'</span>, {<span class="code-string">'form'</span>: form})</div>
+        </section>
+
+        <!-- Documentation Links -->
+        <section id="documentation" class="section">
+            <h2 class="section-title">Documentation</h2>
+            <p class="section-subtitle">Comprehensive guides and API reference</p>
+
+            <div class="doc-links">
+                <a href="#installation" class="doc-link">
+                    <i class="fas fa-download"></i>
+                    <h3>Installation</h3>
+                    <p>Step-by-step installation guide</p>
+                </a>
+
+                <a href="#quickstart" class="doc-link">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Quick Start</h3>
+                    <p>Get started in under 10 minutes</p>
+                </a>
+
+                <a href="https://github.com/Carrington-dev/dj-payfast/blob/main/docs/usage.rst" class="doc-link">
+                    <i class="fas fa-book"></i>
+                    <h3>Usage Guide</h3>
+                    <p>Common use cases and examples</p>
+                </a>
+
+                <a href="https://github.com/Carrington-dev/dj-payfast/blob/main/docs/api.rst" class="doc-link">
+                    <i class="fas fa-code"></i>
+                    <h3>API Reference</h3>
+                    <p>Complete API documentation</p>
+                </a>
+
+                <a href="https://github.com/Carrington-dev/dj-payfast/blob/main/docs/configuration.rst" class="doc-link">
+                    <i class="fas fa-cog"></i>
+                    <h3>Configuration</h3>
+                    <p>All configuration options</p>
+                </a>
+
+                <a href="https://github.com/Carrington-dev/dj-payfast" class="doc-link">
+                    <i class="fab fa-github"></i>
+                    <h3>GitHub Repository</h3>
+                    <p>Source code and issues</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Sponsors Section -->
+        <section id="sponsor" class="section">
+            <div class="sponsors-section">
+                <h2 class="section-title">Support dj-payfast</h2>
+                <p class="section-subtitle">Help us maintain and improve this project</p>
+                
+                <p style="max-width: 700px; margin: 2rem auto;">
+                    We've been bringing dj-payfast to the world for over 10 years. Your sponsorship helps us keep a team of maintainers actively working to improve dj-payfast and ensure it stays up-to-date with the latest PayFast changes.
+                </p>
+
+                <p style="margin: 1.5rem 0;">
+                    All contributions through GitHub sponsors flow into our <a href="https://opencollective.com/dj-payfast" style="color: var(--primary); text-decoration: none; font-weight: 600;">Open Collective</a>, which holds our funds and keeps an open ledger on how donations are spent.
+                </p>
+
+                <a href="https://github.com/sponsors/dj-payfast" class="btn btn-primary btn-large" style="margin-top: 2rem; background: #ffa500;">
+                    <i class="fas fa-heart"></i> Become a Sponsor
+                </a>
+            </div>
+        </section>
+
+        <!-- Similar Libraries -->
+        <section class="section">
+            <h2 class="section-title">Similar Libraries</h2>
+            <p class="section-subtitle">Other Django payment integrations</p>
+
+            <div class="doc-links">
+                <a href="https://github.com/HearthSim/dj-paypal" class="doc-link">
+                    <i class="fab fa-paypal"></i>
+                    <h3>dj-paypal</h3>
+                    <p>PayPal integration for Django</p>
+                </a>
+
+                <a href="https://github.com/paddle-python/dj-paddle" class="doc-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3>dj-paddle</h3>
+                    <p>Paddle payment integration</p>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h3 style="margin-bottom: 1rem;">dj-payfast</h3>
+            <p>PayFast Models for Django - MIT License</p>
+            
+            <div class="footer-links">
+                <a href="https://github.com/Carrington-dev/dj-payfast">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://pypi.org/project/dj-payfast/">
+                    <i class="fas fa-download"></i> PyPI
+                </a>
+                <a href="https://github.com/Carrington-dev/dj-payfast/issues">
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
