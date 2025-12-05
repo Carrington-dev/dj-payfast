@@ -2,7 +2,7 @@
 # payfast/__init__.py
 # ============================================================================
 
-__version__ = '0.1.1'
+__version__ = '0.1.1.2'
 
 default_app_config = 'payfast.apps.PayFastConfig'
 
