@@ -45,28 +45,37 @@ import pprint
 from django.conf import settings
 
 @login_required
-def checkout_view(request):
+def checkout_view(request, ):
     """Handle checkout and create PayFast payment"""
     
     # Create unique payment ID
+    amount = request.GET.get("amount", 9.99)
+    item_name = request.GET.get("item_name", 'Premium Subscription')
+    item_description = request.GET.get("item_description", '1 month premium access')
+    email_address = request.GET.get("email_address", "mcrn96m@gmail.com")
+    name_first = request.GET.get("name_first", "John")
+    name_last = request.GET.get("name_last", "Doe")
+
     payment_id = str(uuid.uuid4())
     
     # Create payment record
     payment = PayFastPayment.objects.create(
         user=request.user,
         m_payment_id=payment_id,
-        amount=99.99,  # Your price in ZAR
-        item_name='Premium Subscription',
-        item_description='1 month premium access',
-        email_address="mcrn96m@gmail.com",
-        name_first=request.user.first_name,
-        name_last=request.user.last_name,
+        amount=amount,  # Your price in ZAR
+        item_name=item_name,
+        item_description=item_description,
+        email_address=email_address,
+        name_first=request.user.first_name or name_first,
+        name_last=request.user.last_name or name_last,
     )
     
     # Build callback URLs
-    return_url = request.build_absolute_uri(reverse('payment_success', kwargs={'pk': payment.pk}))
-    cancel_url = request.build_absolute_uri(reverse('payment_cancel', kwargs={'pk': payment.pk}))
+    return_url = request.build_absolute_uri(reverse('payfast:payment_success', kwargs={'pk': payment.pk}))
+    cancel_url = request.build_absolute_uri(reverse('payfast:payment_cancel', kwargs={'pk': payment.pk}))
     notify_url = request.build_absolute_uri(reverse('payfast:notify', ))
+
+
 
     data =  (PayFastPaymentDetailSerializer(payment ).data)
 
@@ -94,27 +103,6 @@ def checkout_view(request):
     signature = generateSignature(initialData, settings.PAYFAST_PASSPHRASE)
     initialData['signature'] = signature
     
-    # form = PayFastPaymentForm(initial = initialData )
-
-    # initialData = {
-    #     "merchant_id": settings.PAYFAST_MERCHANT_ID,
-    #     "merchant_key": settings.PAYFAST_MERCHANT_KEY,
-    #     'amount': str(payment.amount),
-    #     'item_name': payment.item_name,
-    #     'item_description': payment.item_description,
-    #     'm_payment_id': str(payment.m_payment_id) or "1234" ,
-    #     'email_address': payment.email_address ,
-    #     'name_first': payment.name_first or "First Name",
-    #     'name_last': payment.name_last or "Last Name",
-    #     'return_url': return_url,
-    #     'cancel_url': cancel_url,
-    #     'notify_url': notify_url,
-        
-    # }
-
-    pprint.pprint(initialData)
-
-
 
     # signature = generate_signature(initialData, settings.PAYFAST_PASSPHRASE)
     
