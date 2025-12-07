@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Cancelled</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --payfast-red: #e32e2e;
+            --payfast-dark: #1a1a1a;
+            --warning-orange: #fd7e14;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 40px 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .cancel-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cancel-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cancel-header {
+            background: linear-gradient(135deg, var(--warning-orange) 0%, #e8590c 100%);
+            color: white;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .cancel-icon {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            backdrop-filter: blur(10px);
+            animation: shake 0.5s ease-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .cancel-icon i {
+            font-size: 3.5rem;
+        }
+
+        .cancel-header h1 {
+            font-weight: 800;
+            margin: 0 0 1rem;
+            font-size: 2.5rem;
+        }
+
+        .cancel-header p {
+            font-size: 1.2rem;
+            margin: 0;
+            opacity: 0.95;
+        }
+
+        .cancel-body {
+            padding: 3rem 2.5rem;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--warning-orange);
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #6c757d;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-label i {
+            color: var(--warning-orange);
+        }
+
+        .info-value {
+            font-weight: 700;
+            color: var(--payfast-dark);
+            text-align: right;
+        }
+
+        .reasons-box {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .reasons-box h3 {
+            color: var(--payfast-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .reasons-box h3 i {
+            color: var(--warning-orange);
+        }
+
+        .reasons-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .reasons-box li {
+            padding: 1rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .reasons-box li:last-child {
+            border-bottom: none;
+        }
+
+        .reason-icon {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, var(--warning-orange) 0%, #e8590c 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 8px rgba(253, 126, 20, 0.3);
+        }
+
+        .reason-text {
+            flex: 1;
+            padding-top: 0.3rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            flex: 1;
+            justify-content: center;
+            min-width: 200px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--payfast-red) 0%, #c02525 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(227, 46, 46, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(227, 46, 46, 0.4);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--payfast-dark);
+            border: 2px solid #dee2e6;
+        }
+
+        .btn-secondary:hover {
+            background: #f8f9fa;
+            border-color: var(--payfast-dark);
+            transform: translateY(-2px);
+            color: var(--payfast-dark);
+        }
+
+        .help-box {
+            background: #e7f3ff;
+            border-left: 4px solid #0d6efd;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .help-box i {
+            font-size: 2rem;
+            color: #0d6efd;
+        }
+
+        .help-box-content h4 {
+            margin: 0 0 0.5rem;
+            font-size: 1.1rem;
+            color: var(--payfast-dark);
+        }
+
+        .help-box-content p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+
+        .powered-by {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #dee2e6;
+            color: #6c757d;
+        }
+
+        .payfast-logo {
+            color: var(--payfast-red);
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cancel-container {
+                padding: 0 15px;
+            }
+
+            .cancel-body {
+                padding: 2rem 1.5rem;
+            }
+
+            .cancel-header h1 {
+                font-size: 2rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .info-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .info-value {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cancel-container">
+        <div class="cancel-card">
+            <!-- Cancel Header -->
+            <div class="cancel-header">
+                <div class="cancel-icon">
+                    <i class="bi bi-x-circle-fill"></i>
+                </div>
+                <h1>Payment Cancelled</h1>
+                <p>Your payment was not processed. No charges have been made.</p>
+            </div>
+
+            <!-- Cancel Body -->
+            <div class="cancel-body">
+                <!-- Transaction Information -->
+                <div class="info-box">
+                    <div class="info-row">
+                        <div class="info-label">
+                            <i class="bi bi-receipt"></i>
+                            <span>Transaction ID</span>
+                        </div>
+                        <div class="info-value">
+                            {{ payment.m_payment_id }}
+                        </div>
+                    </div>
+                    
+                    <div class="info-row">
+                        <div class="info-label">
+                            <i class="bi bi-box-seam"></i>
+                            <span>Item</span>
+                        </div>
+                        <div class="info-value">
+                            {{ payment.item_name }}
+                        </div>
+                    </div>
+                    
+                    <div class="info-row">
+                        <div class="info-label">
+                            <i class="bi bi-cash-coin"></i>
+                            <span>Amount</span>
+                        </div>
+                        <div class="info-value">
+                            R {{ payment.amount }}
+                        </div>
+                    </div>
+                    
+                    <div class="info-row">
+                        <div class="info-label">
+                            <i class="bi bi-x-circle"></i>
+                            <span>Status</span>
+                        </div>
+                        <div class="info-value" style="color: var(--warning-orange);">
+                            <i class="bi bi-x-circle-fill"></i> {{ payment.get_status_display }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Common Reasons -->
+                <div class="reasons-box">
+                    <h3>
+                        <i class="bi bi-info-circle-fill"></i>
+                        Common Reasons for Cancellation
+                    </h3>
+                    <ul>
+                        <li>
+                            <div class="reason-icon">
+                                <i class="bi bi-arrow-left"></i>
+                            </div>
+                            <div class="reason-text">
+                                <strong>Changed Your Mind</strong>
+                                <p class="mb-0 text-muted">You decided not to proceed with the purchase at this time.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="reason-icon">
+                                <i class="bi bi-credit-card"></i>
+                            </div>
+                            <div class="reason-text">
+                                <strong>Payment Issues</strong>
+                                <p class="mb-0 text-muted">There may have been a problem with your payment method.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="reason-icon">
+                                <i class="bi bi-question-circle"></i>
+                            </div>
+                            <div class="reason-text">
+                                <strong>Need More Information</strong>
+                                <p class="mb-0 text-muted">You wanted to review details before completing the purchase.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <a href="{% url 'checkout' %}" class="btn btn-primary">
+                        <i class="bi bi-arrow-clockwise"></i>
+                        <span>Try Again</span>
+                    </a>
+                    <a href="/" class="btn btn-secondary">
+                        <i class="bi bi-house-fill"></i>
+                        <span>Return Home</span>
+                    </a>
+                </div>
+
+                <!-- Help Box -->
+                <div class="help-box">
+                    <i class="bi bi-question-circle-fill"></i>
+                    <div class="help-box-content">
+                        <h4>Need Assistance?</h4>
+                        <p>If you encountered an issue or have questions about the payment process, our support team is here to help.</p>
+                    </div>
+                </div>
+
+                <!-- Contact Support -->
+                <div class="card mt-4 border-0" style="background: #f8f9fa;">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="bi bi-headset text-primary me-2"></i>
+                            Have Questions?
+                        </h5>
+                        <p class="card-text mb-3">
+                            Our support team is available to help you with any questions about payments, pricing, or features.
+                        </p>
+                        <a href="/contact" class="btn btn-outline-primary">
+                            <i class="bi bi-envelope"></i> Contact Support
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Powered By -->
+                <div class="powered-by">
+                    <small>Payment processing by</small>
+                    <div class="payfast-logo">
+                        <i class="bi bi-shield-check"></i> PayFast
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
