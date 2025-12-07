@@ -7,6 +7,20 @@ import hashlib
 from urllib.parse import urlencode
 from collections import OrderedDict
 
+import hashlib
+import urllib.parse
+
+def generateSignature(dataArray, passPhrase = ''):
+    payload = ""
+    for key in dataArray:
+        # Get all the data from Payfast and prepare parameter string
+        payload += key + "=" + urllib.parse.quote_plus(str(dataArray[key]).replace("+", " ")) + "&"
+    # After looping through, cut the last & or append your passphrase
+    payload = payload[:-1]
+    if passPhrase != '':
+        payload += f"&passphrase={passPhrase}"
+    return hashlib.md5(payload.encode()).hexdigest()
+
 
 def generate_signature(data_dict, passphrase=None):
     """
