@@ -10,3 +10,6 @@ class PayFastConfig(AppConfig):
     name = 'payfast'
     verbose_name = 'PayFast Payments'
 
+    def ready(self):
+        import payfast.signals  # Import signals
+

@@ -49,6 +49,7 @@ class PayFastPaymentForm(forms.Form):
     
     # Signature
     signature = forms.CharField(widget=forms.HiddenInput(), required=False)
+
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -58,6 +59,8 @@ class PayFastPaymentForm(forms.Form):
             data = {k: str(v) for k, v in self.initial.items() if v is not None and v != ''}
             signature = generate_signature(data)
             self.fields['signature'].initial = signature
+
+    
     
     def get_action_url(self):
         """Get PayFast form action URL"""
