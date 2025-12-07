@@ -10,9 +10,12 @@ from django.utils.decorators import method_decorator
 import requests
 import json
 
+from rest_framework.viewsets import ModelViewSet
 from .models import PayFastPayment, PayFastNotification
+from .serializers import PayFastPaymentCreateSerializer
 from .utils import verify_signature, validate_ip
 from . import conf
+
 
 
 def get_client_ip(request):
@@ -224,3 +227,9 @@ class PayFastNotifyView(View):
             payment.mark_failed()
         
         return HttpResponse('OK', status=200)
+
+
+class PayFastPaymentModelViewSet(ModelViewSet):
+    model = PayFastPayment
+    serializer_class = PayFastPaymentCreateSerializer
+    queryset = PayFastPayment.objects.all()

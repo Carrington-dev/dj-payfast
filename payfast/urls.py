@@ -1,9 +1,14 @@
 from django.urls import path, include
 from django.views.generic import TemplateView
 from . import views
+from payfast.views import PayFastPaymentModelViewSet
+from rest_framework.routers import DefaultRouter
 
 # Define app namespace
 app_name = 'payfast'
+
+router = DefaultRouter()
+router.register("payments", PayFastPaymentModelViewSet, basename="payment")
 
 # ============================================================================
 # Main URL Patterns
@@ -44,4 +49,8 @@ urlpatterns = [
     path("payment_success/<int:pk>", views.payment_success_view, name="payment_success"),
     path("payment_cancel/<int:pk>", views.payment_cancel_view, name="payment_cancel"),
     # path("payment_cancel/<int:pk>", payment_cancel_view, name="payment_cancel"),
+]
+
+urlpatterns += [
+    path("", include(router.urls))
 ]
