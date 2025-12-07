@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 from django.shortcuts import render, redirect
@@ -34,9 +34,9 @@ def checkout_view(request):
     )
     
     # Build callback URLs
-    return_url = request.build_absolute_uri(reverse('payment_success'))
-    cancel_url = request.build_absolute_uri(reverse('payment_cancel'))
-    notify_url = request.build_absolute_uri(reverse('payfast:notify'))
+    return_url = request.build_absolute_uri(reverse('payment_success', kwargs={'pk': payment.pk}))
+    cancel_url = request.build_absolute_uri(reverse('payment_cancel', kwargs={'pk': payment.pk}))
+    notify_url = request.build_absolute_uri(reverse('payfast:notify', ))
 
     data =  (PayFastPaymentDetailSerializer(payment ).data)
 
@@ -105,11 +105,22 @@ def checkout_view(request):
         'payment': payment,
     })
 
-def payment_success_view(request):
+def payment_success_view(request, pk):
     """Handle successful payment return"""
+    
+    payment = get_object_or_404(PayFastPayment, pk=pk)
+    payment.status = "complete"
+    payment.save()
     
     return render(request, 'payment_success.html')
 
-def payment_cancel_view(request):
+def payment_cancel_view(request, pk):
     """Handle cancelled payment"""
-    return render(request, 'payment_cancel.html')
+    
+    payment = get_object_or_404(PayFastPayment, pk=pk)
+    payment.status = "cancelled"
+    payment.save()
+
+    return render(request, 'payment_cancel.html', {
+        "payment": payment
+    })

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Successful - Thank You!</title>
+    <title>Payment Cancelled</title>
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -15,7 +15,7 @@
         :root {
             --payfast-red: #e32e2e;
             --payfast-dark: #1a1a1a;
-            --success-green: #28a745;
+            --warning-orange: #fd7e14;
         }
 
         body {
@@ -25,12 +25,12 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        .success-container {
+        .cancel-container {
             max-width: 700px;
             margin: 0 auto;
         }
 
-        .success-card {
+        .cancel-card {
             background: white;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
@@ -49,26 +49,15 @@
             }
         }
 
-        .success-header {
-            background: linear-gradient(135deg, var(--success-green) 0%, #218838 100%);
+        .cancel-header {
+            background: linear-gradient(135deg, var(--warning-orange) 0%, #e8590c 100%);
             color: white;
             padding: 3rem 2.5rem;
             text-align: center;
             position: relative;
         }
 
-        .success-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
-        }
-
-        .success-icon {
+        .cancel-icon {
             width: 100px;
             height: 100px;
             background: rgba(255, 255, 255, 0.2);
@@ -78,48 +67,41 @@
             justify-content: center;
             margin: 0 auto 1.5rem;
             backdrop-filter: blur(10px);
-            animation: checkmark 0.8s ease-out;
+            animation: shake 0.5s ease-out;
         }
 
-        @keyframes checkmark {
-            0% {
-                transform: scale(0) rotate(-45deg);
-            }
-            50% {
-                transform: scale(1.2) rotate(5deg);
-            }
-            100% {
-                transform: scale(1) rotate(0);
-            }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
         }
 
-        .success-icon i {
+        .cancel-icon i {
             font-size: 3.5rem;
         }
 
-        .success-header h1 {
+        .cancel-header h1 {
             font-weight: 800;
             margin: 0 0 1rem;
             font-size: 2.5rem;
-            position: relative;
         }
 
-        .success-header p {
+        .cancel-header p {
             font-size: 1.2rem;
             margin: 0;
             opacity: 0.95;
         }
 
-        .success-body {
+        .cancel-body {
             padding: 3rem 2.5rem;
         }
 
         .info-box {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
             border-radius: 15px;
             padding: 2rem;
             margin-bottom: 2rem;
-            border-left: 4px solid var(--success-green);
+            border-left: 4px solid var(--warning-orange);
         }
 
         .info-row {
@@ -127,7 +109,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 0;
-            border-bottom: 1px solid #dee2e6;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
         }
 
         .info-row:last-child {
@@ -143,7 +125,7 @@
         }
 
         .info-label i {
-            color: var(--success-green);
+            color: var(--warning-orange);
         }
 
         .info-value {
@@ -152,7 +134,7 @@
             text-align: right;
         }
 
-        .next-steps {
+        .reasons-box {
             background: white;
             border: 2px solid #e9ecef;
             border-radius: 15px;
@@ -160,7 +142,7 @@
             margin-bottom: 2rem;
         }
 
-        .next-steps h3 {
+        .reasons-box h3 {
             color: var(--payfast-dark);
             margin-bottom: 1.5rem;
             font-weight: 700;
@@ -169,17 +151,17 @@
             gap: 0.5rem;
         }
 
-        .next-steps h3 i {
-            color: var(--success-green);
+        .reasons-box h3 i {
+            color: var(--warning-orange);
         }
 
-        .next-steps ul {
+        .reasons-box ul {
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
-        .next-steps li {
+        .reasons-box li {
             padding: 1rem 0;
             display: flex;
             align-items: flex-start;
@@ -187,25 +169,25 @@
             border-bottom: 1px solid #f0f0f0;
         }
 
-        .next-steps li:last-child {
+        .reasons-box li:last-child {
             border-bottom: none;
         }
 
-        .step-icon {
+        .reason-icon {
             width: 35px;
             height: 35px;
-            background: linear-gradient(135deg, var(--success-green) 0%, #218838 100%);
+            background: linear-gradient(135deg, var(--warning-orange) 0%, #e8590c 100%);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            font-weight: 700;
-            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+            font-size: 1.2rem;
+            box-shadow: 0 2px 8px rgba(253, 126, 20, 0.3);
         }
 
-        .step-text {
+        .reason-text {
             flex: 1;
             padding-top: 0.3rem;
         }
@@ -258,9 +240,9 @@
             color: var(--payfast-dark);
         }
 
-        .email-notice {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
+        .help-box {
+            background: #e7f3ff;
+            border-left: 4px solid #0d6efd;
             border-radius: 10px;
             padding: 1.5rem;
             margin-top: 2rem;
@@ -269,18 +251,18 @@
             gap: 1rem;
         }
 
-        .email-notice i {
+        .help-box i {
             font-size: 2rem;
-            color: #ffc107;
+            color: #0d6efd;
         }
 
-        .email-notice-content h4 {
+        .help-box-content h4 {
             margin: 0 0 0.5rem;
             font-size: 1.1rem;
             color: var(--payfast-dark);
         }
 
-        .email-notice-content p {
+        .help-box-content p {
             margin: 0;
             color: #6c757d;
             font-size: 0.95rem;
@@ -300,33 +282,17 @@
             margin-top: 0.5rem;
         }
 
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background: var(--success-green);
-            position: absolute;
-            animation: confetti-fall 3s linear;
-        }
-
-        @keyframes confetti-fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
-            .success-container {
+            .cancel-container {
                 padding: 0 15px;
             }
 
-            .success-body {
+            .cancel-body {
                 padding: 2rem 1.5rem;
             }
 
-            .success-header h1 {
+            .cancel-header h1 {
                 font-size: 2rem;
             }
 
@@ -348,167 +314,142 @@
                 text-align: left;
             }
         }
-
-        /* Print Styles */
-        @media print {
-            body {
-                background: white;
-            }
-
-            .action-buttons,
-            .powered-by {
-                display: none;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="success-container">
-        <div class="success-card">
-            <!-- Success Header -->
-            <div class="success-header">
-                <div class="success-icon">
-                    <i class="bi bi-check-circle-fill"></i>
+    <div class="cancel-container">
+        <div class="cancel-card">
+            <!-- Cancel Header -->
+            <div class="cancel-header">
+                <div class="cancel-icon">
+                    <i class="bi bi-x-circle-fill"></i>
                 </div>
-                <h1>Payment Successful!</h1>
-                <p>Thank you for your purchase. Your transaction has been completed.</p>
+                <h1>Payment Cancelled</h1>
+                <p>Your payment was not processed. No charges have been made.</p>
             </div>
 
-            <!-- Success Body -->
-            <div class="success-body">
-                <!-- Payment Information -->
+            <!-- Cancel Body -->
+            <div class="cancel-body">
+                <!-- Transaction Information -->
                 <div class="info-box">
                     <div class="info-row">
                         <div class="info-label">
                             <i class="bi bi-receipt"></i>
                             <span>Transaction ID</span>
                         </div>
-                        <div class="info-value" id="transaction-id">
-                            Loading...
+                        <div class="info-value">
+                            {{ payment.m_payment_id }}
                         </div>
                     </div>
                     
                     <div class="info-row">
                         <div class="info-label">
-                            <i class="bi bi-calendar-check"></i>
-                            <span>Date</span>
+                            <i class="bi bi-box-seam"></i>
+                            <span>Item</span>
                         </div>
-                        <div class="info-value" id="transaction-date">
-                            <script>
-                                document.getElementById('transaction-date').textContent = 
-                                    new Date().toLocaleDateString('en-ZA', { 
-                                        year: 'numeric', 
-                                        month: 'long', 
-                                        day: 'numeric',
-                                        hour: '2-digit',
-                                        minute: '2-digit'
-                                    });
-                            </script>
+                        <div class="info-value">
+                            {{ payment.item_name }}
                         </div>
                     </div>
                     
                     <div class="info-row">
                         <div class="info-label">
                             <i class="bi bi-cash-coin"></i>
-                            <span>Amount Paid</span>
-                        </div>
-                        <div class="info-value" id="amount-paid">
-                            R 99.99
-                        </div>
-                    </div>
-                    
-                    <div class="info-row">
-                        <div class="info-label">
-                            <i class="bi bi-credit-card"></i>
-                            <span>Payment Method</span>
+                            <span>Amount</span>
                         </div>
                         <div class="info-value">
-                            PayFast
+                            R {{ payment.amount }}
                         </div>
                     </div>
                     
                     <div class="info-row">
                         <div class="info-label">
-                            <i class="bi bi-check-circle"></i>
+                            <i class="bi bi-x-circle"></i>
                             <span>Status</span>
                         </div>
-                        <div class="info-value" style="color: var(--success-green);">
-                            <i class="bi bi-check-circle-fill"></i> Completed
+                        <div class="info-value" style="color: var(--warning-orange);">
+                            <i class="bi bi-x-circle-fill"></i> {{ payment.get_status_display }}
                         </div>
                     </div>
                 </div>
 
-                <!-- Next Steps -->
-                <div class="next-steps">
+                <!-- Common Reasons -->
+                <div class="reasons-box">
                     <h3>
-                        <i class="bi bi-list-check"></i>
-                        What's Next?
+                        <i class="bi bi-info-circle-fill"></i>
+                        Common Reasons for Cancellation
                     </h3>
                     <ul>
                         <li>
-                            <div class="step-icon">1</div>
-                            <div class="step-text">
-                                <strong>Confirmation Email</strong>
-                                <p class="mb-0 text-muted">You'll receive a confirmation email with your receipt shortly.</p>
+                            <div class="reason-icon">
+                                <i class="bi bi-arrow-left"></i>
+                            </div>
+                            <div class="reason-text">
+                                <strong>Changed Your Mind</strong>
+                                <p class="mb-0 text-muted">You decided not to proceed with the purchase at this time.</p>
                             </div>
                         </li>
                         <li>
-                            <div class="step-icon">2</div>
-                            <div class="step-text">
-                                <strong>Access Your Purchase</strong>
-                                <p class="mb-0 text-muted">Your premium features have been activated and are ready to use.</p>
+                            <div class="reason-icon">
+                                <i class="bi bi-credit-card"></i>
+                            </div>
+                            <div class="reason-text">
+                                <strong>Payment Issues</strong>
+                                <p class="mb-0 text-muted">There may have been a problem with your payment method.</p>
                             </div>
                         </li>
                         <li>
-                            <div class="step-icon">3</div>
-                            <div class="step-text">
-                                <strong>Support Available</strong>
-                                <p class="mb-0 text-muted">If you have any questions, our support team is here to help.</p>
+                            <div class="reason-icon">
+                                <i class="bi bi-question-circle"></i>
+                            </div>
+                            <div class="reason-text">
+                                <strong>Need More Information</strong>
+                                <p class="mb-0 text-muted">You wanted to review details before completing the purchase.</p>
                             </div>
                         </li>
                     </ul>
                 </div>
 
-                <!-- Email Notice -->
-                <div class="email-notice">
-                    <i class="bi bi-envelope-check-fill"></i>
-                    <div class="email-notice-content">
-                        <h4>Check Your Email</h4>
-                        <p>A detailed receipt and purchase confirmation has been sent to your email address.</p>
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <a href="{% url 'checkout' %}" class="btn btn-primary">
+                        <i class="bi bi-arrow-clockwise"></i>
+                        <span>Try Again</span>
+                    </a>
+                    <a href="/" class="btn btn-secondary">
+                        <i class="bi bi-house-fill"></i>
+                        <span>Return Home</span>
+                    </a>
+                </div>
+
+                <!-- Help Box -->
+                <div class="help-box">
+                    <i class="bi bi-question-circle-fill"></i>
+                    <div class="help-box-content">
+                        <h4>Need Assistance?</h4>
+                        <p>If you encountered an issue or have questions about the payment process, our support team is here to help.</p>
                     </div>
                 </div>
 
-                <!-- Action Buttons -->
-                <div class="action-buttons">
-                    <a href="/" class="btn btn-primary">
-                        <i class="bi bi-house-fill"></i>
-                        <span>Go to Dashboard</span>
-                    </a>
-                    <a href="javascript:window.print()" class="btn btn-secondary">
-                        <i class="bi bi-printer-fill"></i>
-                        <span>Print Receipt</span>
-                    </a>
-                </div>
-
-                <!-- Need Help Section -->
+                <!-- Contact Support -->
                 <div class="card mt-4 border-0" style="background: #f8f9fa;">
                     <div class="card-body">
                         <h5 class="card-title">
-                            <i class="bi bi-question-circle-fill text-primary me-2"></i>
-                            Need Help?
+                            <i class="bi bi-headset text-primary me-2"></i>
+                            Have Questions?
                         </h5>
                         <p class="card-text mb-3">
-                            If you have any questions about your purchase or need assistance, please don't hesitate to contact us.
+                            Our support team is available to help you with any questions about payments, pricing, or features.
                         </p>
                         <a href="/contact" class="btn btn-outline-primary">
-                            <i class="bi bi-headset"></i> Contact Support
+                            <i class="bi bi-envelope"></i> Contact Support
                         </a>
                     </div>
                 </div>
 
                 <!-- Powered By -->
                 <div class="powered-by">
-                    <small>Secured by</small>
+                    <small>Payment processing by</small>
                     <div class="payfast-logo">
                         <i class="bi bi-shield-check"></i> PayFast
                     </div>
@@ -519,46 +460,5 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        // Get payment info from URL parameters
-        const urlParams = new URLSearchParams(window.location.search);
-        const paymentId = urlParams.get('payment_id') || 'PF' + Math.random().toString(36).substr(2, 9).toUpperCase();
-        const amount = urlParams.get('amount') || '99.99';
-        
-        // Update transaction ID
-        document.getElementById('transaction-id').textContent = paymentId;
-        
-        // Update amount
-        document.getElementById('amount-paid').textContent = 'R ' + parseFloat(amount).toFixed(2);
-        
-        // Confetti effect
-        function createConfetti() {
-            const colors = ['#28a745', '#ffc107', '#e32e2e', '#17a2b8', '#6c757d'];
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.left = Math.random() * 100 + '%';
-                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.animationDelay = Math.random() * 0.3 + 's';
-                    document.body.appendChild(confetti);
-                    
-                    setTimeout(() => confetti.remove(), 3000);
-                }, i * 30);
-            }
-        }
-        
-        // Trigger confetti on load
-        window.addEventListener('load', () => {
-            setTimeout(createConfetti, 500);
-        });
-        
-        // Auto-hide URL parameters for cleaner look
-        if (window.history.replaceState) {
-            const cleanUrl = window.location.pathname;
-            window.history.replaceState(null, null, cleanUrl);
-        }
-    </script>
 </body>
 </html>
