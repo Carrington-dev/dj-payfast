@@ -39,4 +39,9 @@ urlpatterns = [
         views.PayFastNotifyView.as_view(),
         name='itn'
     ),
+
+    path("checkout_view/", views.checkout_view, name="checkout"),
+    path("payment_success/<int:pk>", views.payment_success_view, name="payment_success"),
+    path("payment_cancel/<int:pk>", views.payment_cancel_view, name="payment_cancel"),
+    # path("payment_cancel/<int:pk>", payment_cancel_view, name="payment_cancel"),
 ]
