@@ -172,3 +172,13 @@ cython_debug/
 #.idea/
 
 # End of https://www.toptal.com/developers/gitignore/api/django
+# They ignored Idea (WebStorm) completely
+.idea/
+
+# However, they kept the following four files version controlled
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
