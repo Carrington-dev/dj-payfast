@@ -45,6 +45,117 @@ The full documentation is available [on Read the Docs](https://carrington-dev.gi
 
 See [installation](https://dj-payfast.dev/dj-payfast/2.7/installation/) instructions.
 
+
+### 1. Install via pip
+
+```bash
+pip install dj-payfast
+```
+
+### 2. Add to `INSTALLED_APPS`
+
+```python
+# settings.py
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    
+    # Third-party apps
+    'rest_framework',  # Optional, for API support
+    'payfast',         # Add this
+    
+    # Your apps
+    'myapp',
+]
+```
+
+### 3. Configure URLs
+
+```python
+# urls.py
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('payfast/', include('payfast.urls')),  # Add this
+    # Your other URLs
+]
+```
+
+This creates the webhook endpoint at: `/payfast/notify/`
+
+### 4. Run Migrations
+
+```bash
+python manage.py migrate
+```
+
+---
+
+## Configuration
+
+### Basic Configuration
+
+Add your PayFast credentials to `settings.py`:
+
+```python
+# settings.py
+
+# PayFast Configuration
+PAYFAST_MERCHANT_ID = '10023192'           # Your merchant ID
+PAYFAST_MERCHANT_KEY = 'ecs5ue9vb4i70'     # Your merchant key
+PAYFAST_PASSPHRASE = 'jt7NOE43FZPn'        # Your passphrase (recommended)
+PAYFAST_TEST_MODE = True                    # False for production
+```
+
+### Environment Variables (Recommended)
+
+**Never commit credentials to version control!** Use environment variables:
+
+```python
+# settings.py
+import os
+
+PAYFAST_MERCHANT_ID = os.environ.get('PAYFAST_MERCHANT_ID')
+PAYFAST_MERCHANT_KEY = os.environ.get('PAYFAST_MERCHANT_KEY')
+PAYFAST_PASSPHRASE = os.environ.get('PAYFAST_PASSPHRASE')
+PAYFAST_TEST_MODE = os.environ.get('PAYFAST_TEST_MODE', 'True') == 'True'
+```
+
+Create a `.env` file:
+
+```bash
+# .env
+PAYFAST_MERCHANT_ID=10023192
+PAYFAST_MERCHANT_KEY=ecs5ue9vb4i70
+PAYFAST_PASSPHRASE=jt7NOE43FZPn
+PAYFAST_TEST_MODE=True
+```
+
+### Getting PayFast Credentials
+
+**Sandbox (Testing):**
+1. Sign up at [sandbox.payfast.co.za](https://sandbox.payfast.co.za)
+2. Navigate to **Settings → Integration**
+3. Copy your Merchant ID and Merchant Key
+4. Generate a passphrase
+
+**Production:**
+1. Sign up at [www.payfast.co.za](https://www.payfast.co.za)
+2. Complete merchant verification
+3. Navigate to **Settings → Integration**
+4. Copy your credentials
+
+---
+
+
 ## Usage Examples
 ### Steps Taken Using Query Parameters (To make it dynamic)
 
