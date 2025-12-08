@@ -45,6 +45,43 @@ The full documentation is available [on Read the Docs](https://carrington-dev.gi
 
 See [installation](https://dj-payfast.dev/dj-payfast/2.7/installation/) instructions.
 
+## Usage Examples
+### Steps Taken Using Query Parameters (To make it dynamic)
+
+#### Example 1: E-commerce Checkout
+
+```python
+# views.py
+from django.shortcuts import redirect, reverse
+from urllib.parse import urlencode
+from .models import Order
+
+def process_order_checkout(request, order_id):
+    """
+    Process order and redirect to PayFast checkout
+    """
+    order = Order.objects.get(id=order_id, user=request.user)
+    
+    # Calculate total
+    total = order.calculate_total()
+    
+    # Build item description
+    items = ', '.join([f"{item.quantity}x {item.product.name}" 
+                       for item in order.items.all()])
+    
+    params = urlencode({
+        'amount': total,
+        'item_name': f'Order #{order.id}',
+        'item_description': items,
+        'custom_str1': f'order_{order.id}',
+        'custom_int1': order.items.count(),
+        'email_address': request.user.email,
+    })
+    
+    url = f"{reverse('payfast:checkout')}?{params}"
+    return redirect(url)
+```
+
 ## Changelog
 
 [See release notes on Read the Docs](history/2_7_0/).
