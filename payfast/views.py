@@ -74,6 +74,9 @@ def checkout_view(request, ):
     # Build callback URLs
     return_url = request.build_absolute_uri(reverse('payfast:payment_success', kwargs={'pk': payment.pk}))
     cancel_url = request.build_absolute_uri(reverse('payfast:payment_cancel', kwargs={'pk': payment.pk}))
+    # notify_url = request.build_absolute_uri(reverse('payfast:notify_url', kwargs={'pk': payment.pk}))
+    # notify_url = request.build_absolute_uri(reverse("payfast:payment-detail", kwargs={"pk": payment.pk}))
+    
     notify_url = request.build_absolute_uri(reverse('payfast:notify', ))
 
 
@@ -96,7 +99,8 @@ def checkout_view(request, ):
         'name_last': data['name_last'] or "Doe",
         'email_address': data.get('email_address', 'test@test.com'),
         # Transaction details
-        'm_payment_id': data["m_payment_id"], #Unique payment ID to pass through to notify_url
+        'payment_id': payment.id, #Unique payment ID to pass through to notify_url
+        'm_payment_id': payment_id, #Unique payment ID to pass through to notify_url
         'amount': data["amount"],
         'item_name': f'Order#{payment_id[:22]}',
     }
@@ -144,6 +148,8 @@ def payfast_payment_view(request, pk):
     return_url = request.build_absolute_uri(reverse('payfast:payment_success', kwargs={'pk': payment.pk}))
     cancel_url = request.build_absolute_uri(reverse('payfast:payment_cancel', kwargs={'pk': payment.pk}))
     notify_url = request.build_absolute_uri(reverse('payfast:notify', ))
+    # notify_url = request.build_absolute_uri(reverse("payfast:payment-detail", kwargs={"pk": payment.pk}))
+
 
 
 
@@ -225,7 +231,7 @@ class PayFastNotifyView(View):
     def post(self, request, *args, **kwargs):
         # Get POST data
         post_data = request.POST.dict()
-        
+        print(post_data)
         # Get IP address
         ip_address = get_client_ip(request)
         

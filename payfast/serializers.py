@@ -181,6 +181,13 @@ class PayFastPaymentUpdateSerializer(serializers.ModelSerializer):
         model = PayFastPayment
         fields = [
             'status',
+            'm_payment_id',
+            'pf_payment_id',
+            'item_name',
+            'item_description',
+            'amount_gross',
+            'amount_fee',
+            'amount_net',
             'custom_str1',
             'custom_str2',
             'custom_str3',
@@ -191,6 +198,9 @@ class PayFastPaymentUpdateSerializer(serializers.ModelSerializer):
             'custom_int3',
             'custom_int4',
             'custom_int5',
+            'email_address',
+            'merchant_id',
+            'signature'
         ]
     
     def validate_status(self, value):

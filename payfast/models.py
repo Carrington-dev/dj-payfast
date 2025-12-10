@@ -24,9 +24,13 @@ class PayFastPayment(models.Model):
     # Primary fields
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='payfast_payments')
     
+    # Merchant transaction details
+    merchant_id = models.CharField(max_length=100, unique=True, null=True, blank=True, help_text='Merchant ID')
+
     # PayFast transaction details
     m_payment_id = models.CharField(max_length=100, unique=True, db_index=True, help_text='Unique payment ID from merchant')
     pf_payment_id = models.CharField(max_length=100, blank=True, null=True, help_text='PayFast payment ID')
+    signature = models.CharField(max_length=100, blank=True, null=True, help_text='PayFast payment signature')
     
     # Payment details
     amount = models.DecimalField(max_digits=10, decimal_places=2)
