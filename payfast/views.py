@@ -14,7 +14,7 @@ from payfast.pagination import PayfastPagination
 from rest_framework.viewsets import ModelViewSet
 from .models import PayFastPayment, PayFastNotification
 from .serializers import PayFastPaymentCreateSerializer, PayFastPaymentListSerializer, PayFastPaymentUpdateSerializer
-from .utils import verify_signature, validate_ip
+from .utils import generate_pf_id, verify_signature, validate_ip
 from . import conf
 
 
@@ -57,7 +57,7 @@ def checkout_view(request, ):
     name_first = request.GET.get("name_first", "John")
     name_last = request.GET.get("name_last", "Doe")
 
-    payment_id = str(uuid.uuid4())
+    payment_id = generate_pf_id()
     
     # Create payment record
     payment = PayFastPayment.objects.create(
@@ -102,7 +102,7 @@ def checkout_view(request, ):
         'payment_id': payment.id, #Unique payment ID to pass through to notify_url
         'm_payment_id': payment_id, #Unique payment ID to pass through to notify_url
         'amount': data["amount"],
-        'item_name': f'Order#{payment_id[:22]}',
+        'item_name': f'Order#{payment_id}',
     }
 
     signature = generateSignature(initialData, settings.PAYFAST_PASSPHRASE)

@@ -4,11 +4,29 @@
 # ============================================================================
 
 import hashlib
+import random
+import string
+import urllib.parse
 from urllib.parse import urlencode
 from collections import OrderedDict
 
-import hashlib
-import urllib.parse
+
+def generate_pf_id(prefix="PF", length=11):
+    """
+    Generate an ID like PF18K07G4P9
+    
+    prefix: fixed prefix (default 'PF')
+    length: total length of the ID (default 11)
+    """
+    # Remaining characters after prefix
+    remaining = length - len(prefix)
+
+    # Pool of uppercase letters + digits
+    chars = string.ascii_uppercase + string.digits
+
+    random_part = ''.join(random.choice(chars) for _ in range(remaining))
+    return prefix + random_part
+
 
 def generateSignature(dataArray, passPhrase = ''):
     payload = ""

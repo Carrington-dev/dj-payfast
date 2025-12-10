@@ -8,6 +8,8 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.shortcuts import reverse
 
+from payfast.utils import generate_pf_id
+
 User = get_user_model()
 
 
@@ -28,9 +30,9 @@ class PayFastPayment(models.Model):
     merchant_id = models.CharField(max_length=100, unique=True, null=True, blank=True, help_text='Merchant ID')
 
     # PayFast transaction details
-    m_payment_id = models.CharField(max_length=100, unique=True, db_index=True, help_text='Unique payment ID from merchant')
+    m_payment_id = models.CharField(max_length=100, default=generate_pf_id, help_text='Unique payment ID from merchant')
     pf_payment_id = models.CharField(max_length=100, blank=True, null=True, help_text='PayFast payment ID')
-    signature = models.CharField(max_length=100, blank=True, null=True, help_text='PayFast payment signature')
+    signature = models.CharField(max_length=100, blank=True, null=True, help_text='PayFast payment sign')
     
     # Payment details
     amount = models.DecimalField(max_digits=10, decimal_places=2)
