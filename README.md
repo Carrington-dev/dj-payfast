@@ -157,7 +157,7 @@ PAYFAST_TEST_MODE=True
 
 
 ## Usage Examples
-### Steps Taken Using Query Parameters (To make it dynamic)
+### Steps Taken When Using API Calls (To make it dynamic)
 
 Create a payment (post) endpoint at: `/payfast/payments/`
 
