@@ -134,6 +134,16 @@ def payfast_payment_view(request, pk):
     
     # Create unique payment ID
     payment =  get_object_or_404(PayFastPayment, pk=pk)
+    
+
+    # Build callback URLs
+    return_url = request.build_absolute_uri(reverse('payfast:payment_success', kwargs={'pk': payment.pk}))
+    cancel_url = request.build_absolute_uri(reverse('payfast:payment_cancel', kwargs={'pk': payment.pk}))
+    notify_url = request.build_absolute_uri(reverse('payfast:notify', ))
+
+    if payment.status == "complete":
+        return redirect(return_url)
+    
     amount = payment.amount
     item_name = payment.item_name
     item_description = payment.item_description
@@ -144,10 +154,7 @@ def payfast_payment_view(request, pk):
     payment_id = payment.pf_payment_id
     
    
-    # Build callback URLs
-    return_url = request.build_absolute_uri(reverse('payfast:payment_success', kwargs={'pk': payment.pk}))
-    cancel_url = request.build_absolute_uri(reverse('payfast:payment_cancel', kwargs={'pk': payment.pk}))
-    notify_url = request.build_absolute_uri(reverse('payfast:notify', ))
+    
     # notify_url = request.build_absolute_uri(reverse("payfast:payment-detail", kwargs={"pk": payment.pk}))
 
 
@@ -205,8 +212,11 @@ def payment_success_view(request, pk):
     payment = get_object_or_404(PayFastPayment, pk=pk)
     payment.status = "complete"
     payment.save()
+
+    context = dict()
+    context['payment'] = payment
     
-    return render(request, 'payfast/payment_success.html')
+    return render(request, 'payfast/payment_success.html', context)
 
 def payment_cancel_view(request, pk):
     """Handle cancelled payment"""
