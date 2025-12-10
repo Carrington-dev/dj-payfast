@@ -210,7 +210,7 @@ def payment_success_view(request, pk):
     """Handle successful payment return"""
     
     payment = get_object_or_404(PayFastPayment, pk=pk)
-    payment.status = "complete"
+    payment.mark_complete()
     payment.save()
 
     context = dict()
@@ -222,7 +222,7 @@ def payment_cancel_view(request, pk):
     """Handle cancelled payment"""
     
     payment = get_object_or_404(PayFastPayment, pk=pk)
-    payment.status = "cancelled"
+    payment.mark_failed()
     payment.save()
 
     return render(request, 'payfast/payment_cancel.html', {
