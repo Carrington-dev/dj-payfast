@@ -159,6 +159,54 @@ PAYFAST_TEST_MODE=True
 ## Usage Examples
 ### Steps Taken Using Query Parameters (To make it dynamic)
 
+Create a payment (post) endpoint at: `/payfast/payments/`
+
+```json
+// some fields are not required
+// This is a post request
+{
+    "m_payment_id": "",
+    "user": null,
+    "amount": null,
+    "item_name": "",
+    "item_description": "",
+    "name_first": "",
+    "name_last": "",
+    "email_address": "",
+    "cell_number": "",
+    "custom_str1": "",
+    "custom_str2": "",
+    "custom_str3": "",
+    "custom_str4": "",
+    "custom_str5": "",
+    "custom_int1": null,
+    "custom_int2": null,
+    "custom_int3": null,
+    "custom_int4": null,
+    "custom_int5": null
+}
+```
+This request returns something like this
+```json
+{
+    "amount": "99.99",
+    "item_name": "Premium Subscription",
+    "item_description": "1 month premium access",
+    "name_first": "",
+    "name_last": "",
+    "email_address": "crn96m@gmail.com",
+    "m_payment_id": "3a280ceb-344c-48d1-8e9c-7945f3f1194a",
+    "payfast_url": "http://127.0.0.1:2000/payments/checkout/2"
+}
+```
+
+__if you are using a frontend app like REACTJS just redirect to 'payfast_url'__
+
+After the completion of this payment payfast will redirect to complete endpoint or cancelled endpoint
+
+
+### Steps Taken Using Query Parameters (To make it dynamic)
+
 #### Example 1: E-commerce Checkout
 
 ```python
