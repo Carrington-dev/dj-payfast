@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Django Admin{% endblock %}</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Django Admin CSS (keep for icons and basic structure) -->
+    <link rel="stylesheet" href="{% static 'admin/css/base.css' %}">
+    
+    <!-- Custom CSS to blend Bootstrap with Django Admin -->
+    <link rel="stylesheet" href="{% static 'admin/css/custom_admin.css' %}">
+    
+    {% block extrastyle %}{% endblock %}
+</head>
+<body class="{% block bodyclass %}{% endblock %}">
+    <div id="container">
+        {% block header %}
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'admin:index' %}">
+                    {% block branding %}Django Administration{% endblock %}
+                </a>
+                {% if user.is_active and user.is_staff %}
+                <div class="navbar-nav ms-auto">
+                    <span class="navbar-text me-3">
+                        Welcome, <strong>{% firstof user.get_short_name user.get_username %}</strong>
+                    </span>
+                    <a href="{% url 'admin:logout' %}" class="btn btn-outline-light btn-sm">Log out</a>
+                </div>
+                {% endif %}
+            </div>
+        </nav>
+        {% endblock %}
+
+        <div class="row g-0">
+            {% block nav-sidebar %}
+            <div class="col-md-2 bg-light border-end" style="min-height: calc(100vh - 56px);">
+                <div class="p-3">
+                    {% block sidebar %}
+                    {% endblock %}
+                </div>
+            </div>
+            {% endblock %}
+
+            <div class="col-md-10">
+                {% block messages %}
+                <div class="container-fluid mt-3">
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% endblock %}
+
+                <div class="container-fluid p-4">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    {% block extrajs %}{% endblock %}
+</body>
+</html>

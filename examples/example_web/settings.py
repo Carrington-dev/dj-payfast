@@ -141,3 +141,10 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 20
     
 }
+
+
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Run: python manage.py collectstatic
+# Configure your web server (nginx/Apache) to serve STATIC_ROOT at STATIC_URL
