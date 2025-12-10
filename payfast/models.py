@@ -6,6 +6,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils import timezone
+from django.shortcuts import reverse
 
 User = get_user_model()
 
@@ -82,6 +83,16 @@ class PayFastPayment(models.Model):
         """Mark payment as failed"""
         self.status = 'failed'
         self.save()
+
+    def get_payfast_url(self):
+        return reverse("payfast:payfast_payment_view", kwargs={"pk": self.pk})
+
+    def get_absolute_url(self):
+        return reverse("payfast:payfast_payment_view", kwargs={"pk": self.pk})
+    
+
+    
+    
 
 
 class PayFastNotification(models.Model):

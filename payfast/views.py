@@ -10,9 +10,10 @@ from django.utils.decorators import method_decorator
 import requests
 import json
 
+from payfast.pagination import PayfastPagination
 from rest_framework.viewsets import ModelViewSet
 from .models import PayFastPayment, PayFastNotification
-from .serializers import PayFastPaymentCreateSerializer
+from .serializers import PayFastPaymentCreateSerializer, PayFastPaymentListSerializer, PayFastPaymentUpdateSerializer
 from .utils import verify_signature, validate_ip
 from . import conf
 
@@ -98,6 +99,75 @@ def checkout_view(request, ):
         'm_payment_id': data["m_payment_id"], #Unique payment ID to pass through to notify_url
         'amount': data["amount"],
         'item_name': f'Order#{payment_id[:22]}',
+    }
+
+    signature = generateSignature(initialData, settings.PAYFAST_PASSPHRASE)
+    initialData['signature'] = signature
+    
+
+    # signature = generate_signature(initialData, settings.PAYFAST_PASSPHRASE)
+    
+ 
+    htmlForm = f'<form action="{ PAYFAST_URL }" method="post">'
+    for key in initialData:
+        htmlForm += f'<input name="{key}"  type="hidden" value="{initialData[key]}" />'
+
+    htmlForm += f"<button type=\"submit\" class=\"btn btn-pay\" id=\"pay-btn\">\
+                <i class=\"bi bi-lock-fill\"></i><span>Pay R{ payment.amount } with PayFast</span> \
+                    </button></form>"
+
+
+    
+    return render(request, 'payfast/checkout.html', {
+        # 'form': form,
+        "htmlForm": htmlForm,
+        'payment': payment,
+    })
+
+@login_required
+def payfast_payment_view(request, pk):
+    """Handle checkout and create PayFast payment"""
+    
+    # Create unique payment ID
+    payment =  get_object_or_404(PayFastPayment, pk=pk)
+    amount = payment.amount
+    item_name = payment.item_name
+    item_description = payment.item_description
+    email_address = payment.email_address
+    name_first = payment.name_first
+    name_last = payment.name_last
+
+    payment_id = payment.pf_payment_id
+    
+   
+    # Build callback URLs
+    return_url = request.build_absolute_uri(reverse('payfast:payment_success', kwargs={'pk': payment.pk}))
+    cancel_url = request.build_absolute_uri(reverse('payfast:payment_cancel', kwargs={'pk': payment.pk}))
+    notify_url = request.build_absolute_uri(reverse('payfast:notify', ))
+
+
+
+
+   
+    # Create PayFast form
+   
+
+    initialData = {
+        # Merchant details
+        "merchant_id": settings.PAYFAST_MERCHANT_ID,
+        "merchant_key": settings.PAYFAST_MERCHANT_KEY,
+        'return_url': return_url,
+        'cancel_url': cancel_url,
+        'notify_url': notify_url,
+        # Buyer details
+        'name_first': name_first or "John",
+        'name_last': name_last or "Doe",
+        'email_address': email_address or 'test@test.com',
+        # Transaction details
+        'm_payment_id': payment_id, #Unique payment ID to pass through to notify_url
+        'amount': amount,
+        'item_name': f'{item_name}',
+        'item_description': f'{item_description}',
     }
 
     signature = generateSignature(initialData, settings.PAYFAST_PASSPHRASE)
@@ -219,5 +289,17 @@ class PayFastNotifyView(View):
 
 class PayFastPaymentModelViewSet(ModelViewSet):
     model = PayFastPayment
-    serializer_class = PayFastPaymentCreateSerializer
     queryset = PayFastPayment.objects.all()
+    serializer_class = PayFastPaymentCreateSerializer
+    pagination_class  = PayfastPagination
+
+    serializer_classes = {
+        "create": PayFastPaymentCreateSerializer,
+        "list": PayFastPaymentListSerializer,
+        "retrieve": PayFastPaymentDetailSerializer,
+        "update": PayFastPaymentUpdateSerializer,
+        "partial_update": PayFastPaymentUpdateSerializer,
+    }
+
+    def get_serializer_class(self):
+        return self.serializer_classes.get(self.action, PayFastPaymentCreateSerializer)

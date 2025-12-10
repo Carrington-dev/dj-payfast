@@ -46,6 +46,7 @@ urlpatterns = [
     ),
 
     path("checkout/", views.checkout_view, name="checkout"),
+    path("checkout/<int:pk>", views.payfast_payment_view, name="payfast_payment_view"),
     path("payment_success/<int:pk>", views.payment_success_view, name="payment_success"),
     path("payment_cancel/<int:pk>", views.payment_cancel_view, name="payment_cancel"),
     # path("payment_cancel/<int:pk>", payment_cancel_view, name="payment_cancel"),

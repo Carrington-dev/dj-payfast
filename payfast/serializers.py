@@ -73,16 +73,27 @@ class PayFastPaymentDetailSerializer(serializers.ModelSerializer):
     Includes all payment fields and related data.
     """
     
-    user_email = serializers.EmailField(source='user.email', read_only=True)
-    status_display = serializers.CharField(source='get_status_display', read_only=True)
-    notifications_count = serializers.IntegerField(
-        source='notifications.count',
-        read_only=True
-    )
+    # user_email = serializers.EmailField(source='user.email', read_only=True)
+    # status_display = serializers.CharField(source='get_status_display', read_only=True)
+    # notifications_count = serializers.IntegerField(
+    #     source='notifications.count',
+    #     read_only=True
+    # )
+    payfast_url = serializers.SerializerMethodField()
+
     
     class Meta:
         model = PayFastPayment
-        fields = '__all__'
+        fields = [
+            "amount",
+            "item_name",
+            "item_description",
+            "name_first",
+            "name_last",
+            "email_address",
+            "m_payment_id",
+            "payfast_url"
+        ]
         read_only_fields = [
             'id',
             'pf_payment_id',
@@ -94,6 +105,15 @@ class PayFastPaymentDetailSerializer(serializers.ModelSerializer):
             'updated_at',
             'completed_at',
         ]
+
+    def get_payfast_url(self, obj):
+        """Get the absolute URL for this payment"""
+        request = self.context.get('request')
+        if request:
+            return request.build_absolute_uri(obj.get_payfast_url())
+        return obj.get_payfast_url()
+
+    
 
 
 class PayFastPaymentCreateSerializer(serializers.ModelSerializer):

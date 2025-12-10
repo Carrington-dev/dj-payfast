@@ -128,3 +128,16 @@ PAYFAST_MERCHANT_ID = os.environ.get('PAYFAST_MERCHANT_ID', '10023192')  # Sandb
 PAYFAST_MERCHANT_KEY = os.environ.get('PAYFAST_MERCHANT_KEY', 'ecs5ue9vb4i70')  # Sandbox default
 PAYFAST_PASSPHRASE = os.environ.get('PAYFAST_PASSPHRASE', 'jt7NOE43FZPn')  # Your secure passphrase
 PAYFAST_TEST_MODE = True
+
+REST_FRAMEWORK = {
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    #     'rest_framework.authentication.TokenAuthentication',
+    #     'rest_framework.authentication.SessionAuthentication',
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # ),
+    # 'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    # 'DEFAULT_PAGINATION_CLASS': 'tradings.pagination.VroomPagination',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20
+    
+}
