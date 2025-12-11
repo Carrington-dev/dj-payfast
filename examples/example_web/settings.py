@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-+yu!l74$%*--6xv-^5=^kuextk1%@w0(lm(6mm3j^dn9_o15x2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -130,6 +130,7 @@ PAYFAST_MERCHANT_KEY = os.environ.get('PAYFAST_MERCHANT_KEY', 'ecs5ue9vb4i70')  
 PAYFAST_PASSPHRASE = os.environ.get('PAYFAST_PASSPHRASE', 'jt7NOE43FZPn')  # Your secure passphrase
 PAYFAST_TEST_MODE = True
 
+
 REST_FRAMEWORK = {
     # 'DEFAULT_AUTHENTICATION_CLASSES': (
     #     'rest_framework.authentication.TokenAuthentication',
@@ -149,3 +150,8 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Run: python manage.py collectstatic
 # Configure your web server (nginx/Apache) to serve STATIC_ROOT at STATIC_URL
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.ngrok-free.app"
+]
+APPEND_SLASH=True

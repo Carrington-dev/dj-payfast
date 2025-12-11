@@ -84,7 +84,7 @@ def verify_signature(data_dict, passphrase=None):
         Boolean indicating if signature is valid
     """
     received_signature = data_dict.get('signature', '')
-    calculated_signature = generate_signature(data_dict, passphrase)
+    calculated_signature = generateSignature(data_dict, passphrase)
     
     return received_signature == calculated_signature
 
