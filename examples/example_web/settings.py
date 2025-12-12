@@ -125,9 +125,9 @@ STATIC_URL = 'static/'
 
 
 # Use environment variables (recommended for security)
-PAYFAST_MERCHANT_ID = os.environ.get('PAYFAST_MERCHANT_ID', '10023192')  # Sandbox default
-PAYFAST_MERCHANT_KEY = os.environ.get('PAYFAST_MERCHANT_KEY', 'ecs5ue9vb4i70')  # Sandbox default
-PAYFAST_PASSPHRASE = os.environ.get('PAYFAST_PASSPHRASE', 'jt7NOE43FZPn')  # Your secure passphrase
+PAYFAST_MERCHANT_ID = os.environ.get('PAYFAST_MERCHANT_ID')  # Sandbox default
+PAYFAST_MERCHANT_KEY = os.environ.get('PAYFAST_MERCHANT_KEY')  # Sandbox default
+PAYFAST_PASSPHRASE = os.environ.get('PAYFAST_PASSPHRASE')  # Your secure passphrase
 PAYFAST_TEST_MODE = True
 
 
