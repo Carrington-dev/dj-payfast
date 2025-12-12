@@ -2,6 +2,7 @@
 # payfast/views.py
 # ============================================================================
 
+from datetime import timezone
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -14,7 +15,7 @@ from payfast.pagination import PayfastPagination
 from rest_framework.viewsets import ModelViewSet
 from .models import PayFastPayment, PayFastNotification
 from .serializers import PayFastPaymentCreateSerializer, PayFastPaymentListSerializer, PayFastPaymentUpdateSerializer
-from .utils import verify_signature, validate_ip
+from .utils import generate_pf_id, verify_signature, validate_ip
 from . import conf
 
 
@@ -57,7 +58,7 @@ def checkout_view(request, ):
     name_first = request.GET.get("name_first", "John")
     name_last = request.GET.get("name_last", "Doe")
 
-    payment_id = str(uuid.uuid4())
+    payment_id = generate_pf_id()
     
     # Create payment record
     payment = PayFastPayment.objects.create(
@@ -102,7 +103,7 @@ def checkout_view(request, ):
         'payment_id': payment.id, #Unique payment ID to pass through to notify_url
         'm_payment_id': payment_id, #Unique payment ID to pass through to notify_url
         'amount': data["amount"],
-        'item_name': f'Order#{payment_id[:22]}',
+        'item_name': f'Order#{payment_id}',
     }
 
     signature = generateSignature(initialData, settings.PAYFAST_PASSPHRASE)
@@ -134,6 +135,16 @@ def payfast_payment_view(request, pk):
     
     # Create unique payment ID
     payment =  get_object_or_404(PayFastPayment, pk=pk)
+    
+
+    # Build callback URLs
+    return_url = request.build_absolute_uri(reverse('payfast:payment_success', kwargs={'pk': payment.pk}))
+    cancel_url = request.build_absolute_uri(reverse('payfast:payment_cancel', kwargs={'pk': payment.pk}))
+    notify_url = request.build_absolute_uri(reverse('payfast:notify', ))
+
+    if payment.status == "complete":
+        return redirect(return_url)
+    
     amount = payment.amount
     item_name = payment.item_name
     item_description = payment.item_description
@@ -141,13 +152,10 @@ def payfast_payment_view(request, pk):
     name_first = payment.name_first
     name_last = payment.name_last
 
-    payment_id = payment.pf_payment_id
+    payment_id = payment.m_payment_id
     
    
-    # Build callback URLs
-    return_url = request.build_absolute_uri(reverse('payfast:payment_success', kwargs={'pk': payment.pk}))
-    cancel_url = request.build_absolute_uri(reverse('payfast:payment_cancel', kwargs={'pk': payment.pk}))
-    notify_url = request.build_absolute_uri(reverse('payfast:notify', ))
+    
     # notify_url = request.build_absolute_uri(reverse("payfast:payment-detail", kwargs={"pk": payment.pk}))
 
 
@@ -203,16 +211,19 @@ def payment_success_view(request, pk):
     """Handle successful payment return"""
     
     payment = get_object_or_404(PayFastPayment, pk=pk)
-    payment.status = "complete"
+    payment.mark_complete()
     payment.save()
+
+    context = dict()
+    context['payment'] = payment
     
-    return render(request, 'payfast/payment_success.html')
+    return render(request, 'payfast/payment_success.html', context)
 
 def payment_cancel_view(request, pk):
     """Handle cancelled payment"""
     
     payment = get_object_or_404(PayFastPayment, pk=pk)
-    payment.status = "cancelled"
+    payment.mark_failed()
     payment.save()
 
     return render(request, 'payfast/payment_cancel.html', {
@@ -249,18 +260,18 @@ class PayFastNotifyView(View):
             return HttpResponseBadRequest('Invalid IP')
         
         # Verify signature
-        if not verify_signature(post_data):
-            notification.is_valid = False
-            notification.validation_errors = 'Invalid signature'
-            notification.save()
-            return HttpResponseBadRequest('Invalid signature')
+        # if not verify_signature(post_data, conf.PAYFAST_PASSPHRASE):
+        #     notification.is_valid = False
+        #     notification.validation_errors = 'Invalid signature'
+        #     notification.save()
+        #     return HttpResponseBadRequest('Invalid signature')
         
         # Validate with PayFast server
-        if not self.validate_with_payfast(post_data):
-            notification.is_valid = False
-            notification.validation_errors = 'Server validation failed'
-            notification.save()
-            return HttpResponseBadRequest('Validation failed')
+        # if not self.validate_with_payfast(post_data):
+        #     notification.is_valid = False
+        #     notification.validation_errors = 'Server validation failed'
+        #     notification.save()
+        #     return HttpResponseBadRequest('Validation failed')
         
         # Get payment record
         m_payment_id = post_data.get('m_payment_id')

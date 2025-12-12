@@ -25,12 +25,13 @@ SECRET_KEY = 'django-insecure-+yu!l74$%*--6xv-^5=^kuextk1%@w0(lm(6mm3j^dn9_o15x2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -124,10 +125,11 @@ STATIC_URL = 'static/'
 
 
 # Use environment variables (recommended for security)
-PAYFAST_MERCHANT_ID = os.environ.get('PAYFAST_MERCHANT_ID', '10023192')  # Sandbox default
-PAYFAST_MERCHANT_KEY = os.environ.get('PAYFAST_MERCHANT_KEY', 'ecs5ue9vb4i70')  # Sandbox default
-PAYFAST_PASSPHRASE = os.environ.get('PAYFAST_PASSPHRASE', 'jt7NOE43FZPn')  # Your secure passphrase
+PAYFAST_MERCHANT_ID = os.environ.get('PAYFAST_MERCHANT_ID')  # Sandbox default
+PAYFAST_MERCHANT_KEY = os.environ.get('PAYFAST_MERCHANT_KEY')  # Sandbox default
+PAYFAST_PASSPHRASE = os.environ.get('PAYFAST_PASSPHRASE')  # Your secure passphrase
 PAYFAST_TEST_MODE = True
+
 
 REST_FRAMEWORK = {
     # 'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -141,3 +143,15 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 20
     
 }
+
+
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Run: python manage.py collectstatic
+# Configure your web server (nginx/Apache) to serve STATIC_ROOT at STATIC_URL
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.ngrok-free.app"
+]
+APPEND_SLASH=True

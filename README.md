@@ -33,6 +33,7 @@ The full documentation is available [on Read the Docs](https://carrington-dev.gi
 ## Requirements
 
 -   Django >=4.2
+-   Django Rest Framework (Portable)
 -   Python >=3.9
 -   PostgreSQL engine (recommended) >=12
 -   MySQL engine: MariaDB >=10.5 or MySQL >=8.0
@@ -43,7 +44,7 @@ The full documentation is available [on Read the Docs](https://carrington-dev.gi
 
 ## Installation
 
-See [installation](https://dj-payfast.dev/dj-payfast/2.7/installation/) instructions.
+See [installation](https://carrington-dev.github.io/dj-payfast/installation/) instructions.
 
 
 ### 1. Install via pip

@@ -124,12 +124,12 @@ class PayFastPaymentCreateSerializer(serializers.ModelSerializer):
     """
     
     # Optional: auto-generate m_payment_id if not provided
-    m_payment_id = serializers.CharField(required=False)
+    # m_payment_id = serializers.CharField(required=False)
     
     class Meta:
         model = PayFastPayment
         fields = [
-            'm_payment_id',
+            # 'm_payment_id',
             'user',
             'amount',
             'item_name',

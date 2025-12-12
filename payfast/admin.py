@@ -5,6 +5,10 @@
 from django.contrib import admin
 from .models import PayFastPayment, PayFastNotification
 
+admin.site.site_header = "PayFast"
+admin.site.site_title = "PayFast Portal"
+admin.site.index_title = "Welcome to PayFast Payment Portal"
+
 
 @admin.register(PayFastPayment)
 class PayFastPaymentAdmin(admin.ModelAdmin):
