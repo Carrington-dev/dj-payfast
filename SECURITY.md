@@ -5,6 +5,7 @@ This document outlines security best practices for using dj-payfast in your Djan
 ## Table of Contents
 
 - [Overview](#overview)
+- [Automated Security Scanning](#automated-security-scanning) 
 - [Signature Security](#signature-security)
 - [Passphrase Configuration](#passphrase-configuration)
 - [IP Address Validation](#ip-address-validation)
@@ -25,6 +26,36 @@ dj-payfast implements multiple layers of security to protect your payment transa
 3. **Server-Side Validation** - Double-checks with PayFast servers
 4. **HTTPS Enforcement** - Encrypted communication (production requirement)
 5. **Secure Credential Storage** - Environment-based configuration
+
+## Automated Security Scanning
+
+This project uses automated security scanning via GitHub Actions:
+
+### Tools Used
+- **Bandit** - Python static security analysis
+- **Safety** - Dependency vulnerability scanning  
+- **CodeQL** - Advanced static application security testing
+- **Dependabot** - Automated dependency updates
+
+### When Scans Run
+- On every pull request to `main`
+- On every push to `main` 
+- Weekly scheduled scan 
+
+### Local Scanning
+
+#### Install tools
+
+```bash
+❯ pip install bandit safety
+```
+
+#### Run security checks
+
+```bash
+❯ bandit -r payfast/
+❯ safety check
+```
 
 ## Signature Security
 
