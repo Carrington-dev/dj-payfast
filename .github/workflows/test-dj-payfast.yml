@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  security-events: write
 
 jobs:
   build:
@@ -35,5 +36,8 @@ jobs:
 
     - name: Test with pytest
       env:
-        SECRET_KEY: ${{ secrets.PYPI_API_TOKEN }}
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        PAYFAST_MERCHANT_ID : ${{ secrets.PAYFAST_MERCHANT_ID }}
+        PAYFAST_PASSPHRASE : ${{ secrets.PAYFAST_PASSPHRASE }}
+        PAYFAST_TEST_MODE : ${{ secrets.PAYFAST_TEST_MODE }}
       run: pytest
