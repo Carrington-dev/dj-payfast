@@ -34,6 +34,7 @@ dependencies = [
     "Django>=3.2",
     "djangorestframework",
     "requests>=2.25.0",
+    "python-decouple>=^3.8"
 ]
 
 [project.optional-dependencies]
