@@ -63,17 +63,7 @@ jobs:
               const issues = report.results.length;
               
               if (issues > 0) {
-                const comment = `## 🔒 Security Scan Results
-                
-Bandit found **${issues}** potential security issue(s).
-
-Please review the [detailed report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) and address any HIGH severity findings.
-
-Common issues in payment libraries:
-- Using MD5 for signatures (expected in PayFast API)
-- Hardcoded credentials in test files (acceptable for tests)
-- CSRF exemption on webhooks (required for PayFast ITN)
-                `;
+                const comment = `## 🔒 Security Scan Results\n\nBandit found **${issues}** potential security issue(s).\n\nPlease review the [detailed report](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) and address any HIGH severity findings.\n\nCommon issues in payment libraries:\n- Using MD5 for signatures (expected in PayFast API)\n- Hardcoded credentials in test files (acceptable for tests)\n- CSRF exemption on webhooks (required for PayFast ITN)`;
                 
                 github.rest.issues.createComment({
                   issue_number: context.issue.number,
