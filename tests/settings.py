@@ -1,8 +1,9 @@
 """
 Django settings for running tests
 """
+from decouple import config
 
-SECRET_KEY = 'test-secret-key-for-testing-only'
+SECRET_KEY = config("SECRET_KEY")
 
 DEBUG = True
 
