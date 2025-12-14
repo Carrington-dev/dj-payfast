@@ -2,7 +2,7 @@
 
 ## Reporting a Vulnerability
 
-Please report security vulnerabilities to security@yourcompany.com
+Please report security vulnerabilities to security@khanoit.co.za
 
 ## Supported Versions
 
