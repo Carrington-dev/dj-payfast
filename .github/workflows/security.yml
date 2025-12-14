@@ -47,6 +47,9 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
 
+
+      # Double checking file existance
+
       - name: Run Bandit security scan
         run: |
           bandit -r payfast/ -f sarif --exit-zero -o bandit-report.sarif
