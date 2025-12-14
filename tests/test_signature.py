@@ -2,12 +2,13 @@
 import hashlib
 from urllib.parse import urlencode
 from collections import OrderedDict
+from decouple import config
 
 def test_signature():
     # Your PayFast credentials
-    merchant_id = '10000100'  # Your merchant ID
-    merchant_key = '46f0cd694581a'  # Your merchant key
-    passphrase = 'jt7NOE43FZPn'  # Your passphrase
+    merchant_id = config('PAYFAST_MERCHANT_ID')  # Your merchant ID
+    merchant_key = config('PAYFAST_MERCHANT_KEY')  # Your merchant key
+    passphrase = config('PAYFAST_PASSPHRASE')  # Your passphrase
     
     # Test payment data
     data = {
