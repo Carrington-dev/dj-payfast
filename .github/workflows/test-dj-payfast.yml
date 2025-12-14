@@ -51,6 +51,7 @@ jobs:
         pytest -v
       env:
         DJANGO_SETTINGS_MODULE: tests.settings
+        SECRET_KEY: "10000100"
         PAYFAST_MERCHANT_ID: "10000100"
         PAYFAST_MERCHANT_KEY: "46f0cd694581a"
         PAYFAST_PASSPHRASE: "jt7NOE43FZPn"
