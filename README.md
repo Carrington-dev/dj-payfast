@@ -5,6 +5,7 @@
 
 [![CI tests](https://github.com/Carrington-dev/dj-payfast/blob/main/assets/img/badge.svg)](https://github.com/dj-payfast/dj-payfast/actions/workflows/ci.yml)
 [![Package Downloads](https://img.shields.io/pypi/dm/dj-payfast)](https://pypi.org/project/dj-payfast/)
+
 [![Documentation](https://img.shields.io/static/v1?label=Docs&message=READ&color=informational&style=plastic)](https://carrington-dev.github.io/dj-payfast/)
 [![Sponsor dj-payfast](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=red&style=plastic)](https://github.com/sponsors/dj-payfast)
 [![MIT License](https://img.shields.io/static/v1?label=License&message=MIT&color=informational&style=plastic)](https://github.com/sponsors/dj-payfast)
