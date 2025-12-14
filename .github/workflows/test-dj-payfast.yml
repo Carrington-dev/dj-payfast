@@ -38,6 +38,7 @@ jobs:
       env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
         PAYFAST_MERCHANT_ID : ${{ secrets.PAYFAST_MERCHANT_ID }}
+        PAYFAST_MERCHANT_KEY  : ${{ secrets.PAYFAST_MERCHANT_KEY  }}
         PAYFAST_PASSPHRASE : ${{ secrets.PAYFAST_PASSPHRASE }}
         PAYFAST_TEST_MODE : ${{ secrets.PAYFAST_TEST_MODE }}
       run: pytest
