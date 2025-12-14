@@ -1,0 +1,92 @@
+# Bandit configuration for dj-payfast
+# This config balances security with Django/payment gateway best practices
+
+# Exclude paths that don't need security scanning
+exclude_dirs:
+  - /tests/
+  - /docs/
+  - /examples/
+  - /migrations/
+  - /.venv/
+  - /venv/
+  - /build/
+  - /dist/
+
+# Tests to skip (with justification)
+skips:
+  # B105: Hardcoded password - False positives on Django SECRET_KEY in test settings
+  - B105
+  
+  # B603, B607: Subprocess without shell=True - Used intentionally in management commands
+  # - B603
+  # - B607
+
+# Severity levels to report
+# Options: LOW, MEDIUM, HIGH
+# Set to MEDIUM to focus on important issues
+severity: MEDIUM
+
+# Confidence levels to report
+# Options: LOW, MEDIUM, HIGH
+confidence: MEDIUM
+
+# Tests to explicitly run (optional - remove to run all tests)
+# tests:
+#   - B201  # Flask debug
+#   - B301  # Pickle usage
+#   - B302  # marshal usage
+#   - B303  # MD5 or SHA1 usage
+#   - B304  # Insecure ciphers
+#   - B305  # Insecure cipher modes
+#   - B306  # mktemp usage
+#   - B307  # eval usage
+#   - B308  # mark_safe usage
+#   - B309  # HTTPSConnection
+#   - B310  # URL open
+#   - B311  # Random usage
+#   - B312  # telnetlib
+#   - B313  # XML usage
+#   - B314  # XML usage
+#   - B315  # XML usage
+#   - B316  # XML usage
+#   - B317  # XML usage
+#   - B318  # XML usage
+#   - B319  # XML usage
+#   - B320  # XML usage
+#   - B321  # FTP usage
+#   - B322  # Input usage
+#   - B323  # Unverified SSL context
+#   - B324  # hashlib weak hashes
+#   - B325  # tempfile usage
+#   - B401  # Import telnetlib
+#   - B402  # Import ftplib
+#   - B403  # Import pickle
+#   - B404  # Import subprocess
+#   - B405  # Import XML
+#   - B406  # Import XML
+#   - B407  # Import XML
+#   - B408  # Import XML
+#   - B409  # Import XML
+#   - B410  # Import XML
+#   - B411  # Import random
+#   - B412  # Import httpx
+#   - B413  - Import pycrypto
+#   - B501  # SSL certificate validation
+#   - B502  # SSL with bad version
+#   - B503  # SSL with bad defaults
+#   - B504  # SSL with no verification
+#   - B505  # Weak cryptographic key
+#   - B506  # YAML load
+#   - B507  # SSH no host key verification
+#   - B601  # Paramiko exec
+#   - B602  # Shell injection
+#   - B604  # Function call with shell=True
+#   - B605  # Start process with shell
+#   - B606  # Start process without shell
+#   - B608  # SQL injection
+#   - B609  # Linux wildcards
+#   - B610  # Django extra
+#   - B611  # Django rawsql
+#   - B701  # Jinja2 autoescape
+#   - B702  # Mako templates
+#   - B703  # Django mark safe
