@@ -8,11 +8,6 @@ on:
   schedule:
     - cron: "0 0 * * 0" # Weekly
 
-permissions:
-  contents: read
-  security-events: write
-  actions: read
-
 jobs:
   security:
     runs-on: ubuntu-latest
@@ -24,15 +19,6 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
-
-      # Add caching for faster runs
-      - name: Cache pip packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
 
       - name: Install dependencies
         run: |
@@ -48,40 +34,12 @@ jobs:
         uses: github/codeql-action/analyze@v2
 
       - name: Run Bandit security scan
-        run: |
-          bandit -r payfast/ -f sarif --exit-zero -o bandit-report.sarif
-          # Verify file was created
-          if [ -f bandit-report.sarif ]; then
-            echo "✓ Bandit report created successfully"
-            ls -lh bandit-report.sarif
-          else
-            echo "⚠ Bandit report not created, generating empty report"
-            echo '{"version":"2.1.0","$schema":"https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json","runs":[{"tool":{"driver":{"name":"Bandit","version":"1.7.0"}},"results":[]}]}' > bandit-report.sarif
-          fi
-        continue-on-error: true
+        run: bandit -r payfast/ -f json -o bandit-report.json
 
       - name: Check dependencies with Safety
-        run: |
-          safety check --json > safety-report.json || echo '{"vulnerabilities":[]}' > safety-report.json
-          if [ -f safety-report.json ]; then
-            echo "✓ Safety report created"
-          fi
-        continue-on-error: true
+        run: safety check --json
 
-      - name: Upload Bandit results to GitHub Security
+      - name: Upload results
         uses: github/codeql-action/upload-sarif@v2
-        if: always()
         with:
-          sarif_file: bandit-report.sarif
-          category: bandit
-
-      # Upload all reports as artifacts for review
-      - name: Upload security reports as artifacts
-        uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: security-reports
-          path: |
-            bandit-report.sarif
-            safety-report.json
-          retention-days: 30
+          sarif_file: bandit-report.json
