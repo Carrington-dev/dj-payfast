@@ -77,17 +77,17 @@ Added payfast application ( /payfast/payments ), perform a post request on, some
       "name_first": "",
       "name_last": "",
       "email_address": "",
-      "cell_number": "", # optional field
-      "custom_str1": "", # optional field
-      "custom_str2": "", # optional field
-      "custom_str3": "", # optional field
-      "custom_str4": "", # optional field
-      "custom_str5": "", # optional field
-      "custom_int1": null, # optional field
-      "custom_int2": null, # optional field
-      "custom_int3": null, # optional field
-      "custom_int4": null, # optional field
-      "custom_int5": null # optional field
+      "cell_number": "", // optional field
+      "custom_str1": "", // optional field
+      "custom_str2": "", // optional field
+      "custom_str3": "", // optional field
+      "custom_str4": "", // optional field
+      "custom_str5": "", // optional field
+      "custom_int1": null, // optional field
+      "custom_int2": null, // optional field
+      "custom_int3": null, // optional field
+      "custom_int4": null, // optional field
+      "custom_int5": null, // optional field
    }
 
 **Note:** The fields ``cell_number``, ``custom_str1`` through ``custom_str5``, and ``custom_int1`` through ``custom_int5`` are optional.
@@ -96,7 +96,7 @@ Added payfast application ( /payfast/payments ), perform a post request on, some
 Expected Response
 
 .. code-block:: json
-   
+
    {
       "amount": "99.99",
       "item_name": "Premium Subscription",
