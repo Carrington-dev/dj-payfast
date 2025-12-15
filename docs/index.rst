@@ -64,7 +64,7 @@ Add App to Main Projects urls.py:
       path('payfast/', include("payfast.urls"))
    ]
 
-Added payfast application ( /payfast/payments ), perform a post request on, some fields are not required, This is a post request:
+Added payfast application ( ``/payfast/payments`` ), perform a post request on, some fields are not required, This is a post request:
 
 .. code-block:: json
 
@@ -111,7 +111,8 @@ Expected Response
 
 Using Payfast within React or Android
 ~~~~~~~~~~~~~~~
-To use the above Response just redirect to the payfast_url and pay.
+
+To use the above Response just redirect to the ``payfast_url`` and pay.
 
 
 Why dj-payfast?
