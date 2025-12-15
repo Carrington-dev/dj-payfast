@@ -56,9 +56,9 @@ DATABASES = {
 }
 
 # PayFast Test Configuration
-PAYFAST_MERCHANT_ID = config('PAYFAST_MERCHANT_ID')
-PAYFAST_MERCHANT_KEY = config('PAYFAST_MERCHANT_KEY')
-PAYFAST_PASSPHRASE = config('PAYFAST_PASSPHRASE')
+PAYFAST_MERCHANT_ID = config('PAYFAST_MERCHANT_ID', default="pass")
+PAYFAST_MERCHANT_KEY = config('PAYFAST_MERCHANT_KEY', default="pass")
+PAYFAST_PASSPHRASE = config('PAYFAST_PASSPHRASE', default="pass")
 PAYFAST_TEST_MODE = config('PAYFAST_TEST_MODE', cast=bool)
 
 # Internationalization
