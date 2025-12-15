@@ -3,7 +3,7 @@ Django settings for running tests
 """
 from decouple import config
 
-SECRET_KEY = config("SECRET_KEY")
+SECRET_KEY = config("SECRET_KEY", default="secret-key")
 
 DEBUG = True
 
