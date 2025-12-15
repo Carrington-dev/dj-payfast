@@ -52,6 +52,7 @@ Quick Example
       path('payfast', include("payfast.urls"))
    ]
 
+Added payfast application
 
 .. code-block:: json
    // perform a post request on
