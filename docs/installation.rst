@@ -36,13 +36,13 @@ To install the latest development version:
 
 .. code-block:: bash
 
-   pip install git+https://github.com/yourusername/dj-payfast.git
+   pip install git+https://github.com/carrington-dev/dj-payfast.git
 
 Or clone and install locally:
 
 .. code-block:: bash
 
-   git clone https://github.com/yourusername/dj-payfast.git
+   git clone https://github.com/carrington-dev/dj-payfast.git
    cd dj-payfast
    pip install -e .
 
@@ -53,7 +53,7 @@ If you want to contribute or modify the library:
 
 .. code-block:: bash
 
-   git clone https://github.com/yourusername/dj-payfast.git
+   git clone https://github.com/carrington-dev/dj-payfast.git
    cd dj-payfast
    pip install -e ".[dev]"
 
