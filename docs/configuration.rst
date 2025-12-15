@@ -46,6 +46,30 @@ Environment Variables
    PAYFAST_PASSPHRASE = os.environ.get('PAYFAST_PASSPHRASE')
    PAYFAST_TEST_MODE = os.environ.get('PAYFAST_TEST_MODE', 'True') == 'True'
 
+Using dotzen:
+
+.. code-block:: bash
+
+   pip install dotzen
+
+.. code-block:: python
+
+   from dotzen import config
+   
+   PAYFAST_MERCHANT_ID = config('PAYFAST_MERCHANT_ID')
+   PAYFAST_MERCHANT_KEY = config('PAYFAST_MERCHANT_KEY')
+   PAYFAST_PASSPHRASE = config('PAYFAST_PASSPHRASE', default='')
+   PAYFAST_TEST_MODE = config('PAYFAST_TEST_MODE', default=True, cast=bool)
+
+Create a ``.env`` file:
+
+.. code-block:: text
+
+   PAYFAST_MERCHANT_ID=10000100
+   PAYFAST_MERCHANT_KEY=46f0cd694581a
+   PAYFAST_PASSPHRASE=your_secure_passphrase
+   PAYFAST_TEST_MODE=True
+
 Using python-decouple:
 
 .. code-block:: bash
