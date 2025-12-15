@@ -42,17 +42,20 @@ Key Features
 Quick Example
 ~~~~~~~~~~~~~
 
+Install using pip:
+
 .. code-block:: bash
 
    pip install dj-payfast
 
 .. code-block:: python
-
+   
    INSTALLED_APPS += [
       'payfast'
    ]
    
-   # On Main Projects urls.py
+Add App to Main Projects urls.py
+.. code-block:: python
    urlpatterns += [
       path('payfast', include("payfast.urls"))
    ]
