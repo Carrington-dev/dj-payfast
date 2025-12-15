@@ -49,25 +49,23 @@ Install using pip:
    pip install dj-payfast
 
 Add payfast to your main projects:
-.. code-block:: python
+.. code-block:: bash
    
    INSTALLED_APPS += [
       'payfast'
    ]
    
 Add App to Main Projects urls.py
-.. code-block:: python
+.. code-block:: bash
    urlpatterns += [
       path('payfast/', include("payfast.urls"))
    ]
 
 Added payfast application
 
-.. code-block:: json
-   // perform a post request on
-   ```
+.. code-block:: bash
+   # perform a post request on
    /payfast/payments
-   ```
    
    
 
