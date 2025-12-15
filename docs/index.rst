@@ -48,6 +48,7 @@ Install using pip:
 
    pip install dj-payfast
 
+Add payfast to your main projects:
 .. code-block:: python
    
    INSTALLED_APPS += [
@@ -57,7 +58,7 @@ Install using pip:
 Add App to Main Projects urls.py
 .. code-block:: python
    urlpatterns += [
-      path('payfast', include("payfast.urls"))
+      path('payfast/', include("payfast.urls"))
    ]
 
 Added payfast application
