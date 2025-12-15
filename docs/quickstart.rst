@@ -156,13 +156,10 @@ Create a view to handle the checkout process:
       return redirect(url)
        
 
-   def payment_success_view(request):
-       """Handle successful payment return"""
-       return render(request, 'payment_success.html')
+Note: Payment Outcome Templates
+----------------------------
+Use ``payfast/payments``: 
 
-   def payment_cancel_view(request):
-       """Handle cancelled payment"""
-       return render(request, 'payment_cancel.html')
 
 Step 7: Create the Template
 ----------------------------
