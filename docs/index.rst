@@ -67,9 +67,47 @@ Added payfast application
    # perform a post request on
    /payfast/payments
    
+   # some fields are not required
+   # This is a post request
+   {
+      "m_payment_id": "",
+      "user": null,
+      "amount": null,
+      "item_name": "",
+      "item_description": "",
+      "name_first": "",
+      "name_last": "",
+      "email_address": "",
+      "cell_number": "", # optional field
+      "custom_str1": "", # optional field
+      "custom_str2": "", # optional field
+      "custom_str3": "", # optional field
+      "custom_str4": "", # optional field
+      "custom_str5": "", # optional field
+      "custom_int1": null, # optional field
+      "custom_int2": null, # optional field
+      "custom_int3": null, # optional field
+      "custom_int4": null, # optional field
+      "custom_int5": null # optional field
+   }
    
+   # Expected Response
+   {
+      "amount": "99.99",
+      "item_name": "Premium Subscription",
+      "item_description": "1 month premium access",
+      "name_first": "",
+      "name_last": "",
+      "email_address": "your.email@gmail.com",
+      "m_payment_id": "3a280ceb-344c-48d1-8e9c-7945f3f1194a",
+      "payfast_url": "http://127.0.0.1:2000/payfast/checkout/2"
+   }
 
-   
+
+Using Payfast within React or Android
+~~~~~~~~~~~~~~~
+To use the above Response just redirect to the payfast_url and pay.
+
 
 Why dj-payfast?
 ~~~~~~~~~~~~~~~
