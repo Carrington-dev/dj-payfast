@@ -125,11 +125,11 @@ django.setup()
 # -- Project information -----------------------------------------------------
 
 project = 'dj-payfast'
-copyright = '2024, Your Name'
-author = 'Your Name'
+copyright = '2024, Carrington Muleya'
+author = 'Carrington Muleya'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.0'
+release = '0.1.5'
 version = '0.1'
 
 
@@ -256,7 +256,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'dj-payfast.tex', 'dj-payfast Documentation',
-     'Your Name', 'manual'),
+     'Carrington Muleya', 'manual'),
 ]
 
 
