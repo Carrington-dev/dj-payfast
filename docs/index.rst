@@ -67,7 +67,7 @@ Added payfast application ( /payfast/payments )
 .. some fields are not required
 .. This is a post request
 
-.. code-block:: python
+.. code-block:: json
    {
       "m_payment_id": "",
       "user": null,
