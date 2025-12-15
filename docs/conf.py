@@ -125,7 +125,7 @@ django.setup()
 # -- Project information -----------------------------------------------------
 
 project = 'dj-payfast'
-copyright = '2024, Carrington Muleya'
+copyright = '2025, Carrington Muleya'
 author = 'Carrington Muleya'
 
 # The full version, including alpha/beta/rc tags
