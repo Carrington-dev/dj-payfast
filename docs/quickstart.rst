@@ -83,12 +83,12 @@ Add your PayFast credentials to ``settings.py``:
 
    .. code-block:: python
 
-      import os
+      from dotzen import config
       
-      PAYFAST_MERCHANT_ID = os.environ.get('PAYFAST_MERCHANT_ID')
-      PAYFAST_MERCHANT_KEY = os.environ.get('PAYFAST_MERCHANT_KEY')
-      PAYFAST_PASSPHRASE = os.environ.get('PAYFAST_PASSPHRASE')
-      PAYFAST_TEST_MODE = os.environ.get('PAYFAST_TEST_MODE', 'True') == 'True'
+      PAYFAST_MERCHANT_ID = config('PAYFAST_MERCHANT_ID')
+      PAYFAST_MERCHANT_KEY = config('PAYFAST_MERCHANT_KEY')
+      PAYFAST_PASSPHRASE = config('PAYFAST_PASSPHRASE')
+      PAYFAST_TEST_MODE = config('PAYFAST_TEST_MODE', 'True') == 'True'
 
 Step 4: Configure URLs
 -----------------------
@@ -129,57 +129,32 @@ Create a view to handle the checkout process:
 .. code-block:: python
 
    # views.py
-   from django.shortcuts import render, redirect
-   from django.urls import reverse
-   from django.contrib.auth.decorators import login_required
-   from payfast.models import PayFastPayment
-   from payfast.forms import PayFastPaymentForm
-   import uuid
+   from django.shortcuts import redirect, reverse
+   from urllib.parse import urlencode
+   from .models import Product
 
-   @login_required
-   def checkout_view(request):
-       """Display checkout page with PayFast payment form"""
+   def call_checkout_view(request):
+
+      # Create an order with details listed below
+      cart = Product(
+         price = 89.99,
+         name= "iPhone XS",
+         description="Latest iPhone For sale"
+      )
+
+      cart.save()
+      
+      params = urlencode({
+         'amount': cart.price,
+         'item_name': f'{cart.name}',
+         'item_description': cart.description,
+         'custom_str1': f'cart_{cart.id}',
+         'custom_int1': 1,
+      })
+      
+      url = f"{reverse('payfast:checkout')}?{params}"
+      return redirect(url)
        
-       # Create a unique payment ID
-       payment_id = str(uuid.uuid4())
-       
-       # Create payment record in database
-       payment = PayFastPayment.objects.create(
-           user=request.user,
-           m_payment_id=payment_id,
-           amount=99.00,  # R99.00
-           item_name='Premium Membership',
-           item_description='1 month of premium access',
-           email_address=request.user.email,
-           name_first=request.user.first_name,
-           name_last=request.user.last_name,
-       )
-       
-       # Build absolute URLs for callbacks
-       return_url = request.build_absolute_uri(reverse('payment_success'))
-       cancel_url = request.build_absolute_uri(reverse('payment_cancel'))
-       notify_url = request.build_absolute_uri(reverse('payfast:notify'))
-       
-       # Create PayFast form with payment data
-       form = PayFastPaymentForm(initial={
-           'amount': payment.amount,
-           'item_name': payment.item_name,
-           'item_description': payment.item_description,
-           'm_payment_id': payment.m_payment_id,
-           'email_address': payment.email_address,
-           'name_first': payment.name_first,
-           'name_last': payment.name_last,
-           'return_url': return_url,
-           'cancel_url': cancel_url,
-           'notify_url': notify_url,
-       })
-       
-       context = {
-           'form': form,
-           'payment': payment,
-       }
-       
-       return render(request, 'checkout.html', context)
 
    def payment_success_view(request):
        """Handle successful payment return"""
@@ -372,7 +347,7 @@ Getting Help
 
 * Check the :doc:`faq` for common questions
 * See :doc:`troubleshooting` for solutions to common issues
-* Open an issue on `GitHub <https://github.com/yourusername/dj-payfast/issues>`_
+* Open an issue on `GitHub <https://github.com/carrington-dev/dj-payfast/issues>`_
 
 Congratulations! 🎉
 -------------------
