@@ -63,12 +63,11 @@ Add App to Main Projects urls.py
 
 Added payfast application ( /payfast/payments )
 
+.. perform a post request on
+.. some fields are not required
+.. This is a post request
+
 .. code-block:: python
-   # perform a post request on
-   
-   
-   # some fields are not required
-   # This is a post request
    {
       "m_payment_id": "",
       "user": null,
@@ -91,8 +90,8 @@ Added payfast application ( /payfast/payments )
       "custom_int5": null # optional field
    }
 
+# Expected Response
 .. code-block:: json
-   # Expected Response
    {
       "amount": "99.99",
       "item_name": "Premium Subscription",
