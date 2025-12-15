@@ -61,11 +61,11 @@ Add App to Main Projects urls.py
       path('payfast/', include("payfast.urls"))
    ]
 
-Added payfast application
+Added payfast application ( /payfast/payments )
 
 .. code-block:: python
    # perform a post request on
-   .. /payfast/payments
+   
    
    # some fields are not required
    # This is a post request
@@ -90,7 +90,8 @@ Added payfast application
       "custom_int4": null, # optional field
       "custom_int5": null # optional field
    }
-   
+
+.. code-block:: json
    # Expected Response
    {
       "amount": "99.99",
