@@ -59,6 +59,7 @@ Add payfast to your main projects:
 Add App to Main Projects urls.py:
 
 .. code-block:: bash
+
    urlpatterns += [
       path('payfast/', include("payfast.urls"))
    ]
@@ -66,6 +67,7 @@ Add App to Main Projects urls.py:
 Added payfast application ( /payfast/payments ), perform a post request on, some fields are not required, This is a post request:
 
 .. code-block:: json
+
    {
       "m_payment_id": "",
       "user": null,
@@ -94,6 +96,7 @@ Added payfast application ( /payfast/payments ), perform a post request on, some
 Expected Response
 
 .. code-block:: json
+   
    {
       "amount": "99.99",
       "item_name": "Premium Subscription",
