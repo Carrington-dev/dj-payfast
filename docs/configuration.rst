@@ -46,7 +46,7 @@ Environment Variables
    PAYFAST_PASSPHRASE = os.environ.get('PAYFAST_PASSPHRASE')
    PAYFAST_TEST_MODE = os.environ.get('PAYFAST_TEST_MODE', 'True') == 'True'
 
-Using dotzen:
+**Highly Recommended**: Using dotzen:
 
 .. code-block:: bash
 
