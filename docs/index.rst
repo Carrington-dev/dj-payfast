@@ -88,7 +88,11 @@ Added payfast application ( /payfast/payments ), perform a post request on, some
       "custom_int5": null # optional field
    }
 
-# Expected Response
+**Note:** The fields ``cell_number``, ``custom_str1`` through ``custom_str5``, and ``custom_int1`` through ``custom_int5`` are optional.
+
+
+Expected Response
+
 .. code-block:: json
    {
       "amount": "99.99",
