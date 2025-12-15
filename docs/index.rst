@@ -58,14 +58,14 @@ Add payfast to your main projects:
    
 Add App to Main Projects urls.py:
 
-.. code-block:: python
+.. code-block:: bash
    urlpatterns += [
       path('payfast/', include("payfast.urls"))
    ]
 
 Added payfast application ( /payfast/payments ), perform a post request on, some fields are not required, This is a post request:
 
-.. code-block:: python
+.. code-block:: json
    {
       "m_payment_id": "",
       "user": null,
