@@ -209,7 +209,7 @@ Community & Support
 * **GitHub**: `github.com/carrington-dev/dj-payfast <https://github.com/carrington-dev/dj-payfast>`_
 * **Issues**: `GitHub Issue Tracker <https://github.com/carrington-dev/dj-payfast/issues>`_
 * **PyPI**: `pypi.org/project/dj-payfast <https://pypi.org/project/dj-payfast>`_
-* **Email**: support@example.com
+* **Email**: carrington.muleya@outlook.com
 
 Contributing
 ------------
@@ -233,6 +233,7 @@ Acknowledgments
 This library is inspired by other excellent Django payment libraries:
 
 * `dj-stripe <https://github.com/dj-stripe/dj-stripe>`_
+* `dj-paypal <https://github.com/dj-paypal/dj-paypal>`_
 * `django-paypal <https://github.com/spookylukey/django-paypal>`_
 
 Special thanks to PayFast for providing a reliable payment gateway for South African businesses.
