@@ -125,11 +125,14 @@ class PayFastPaymentCreateSerializer(serializers.ModelSerializer):
     
     # Optional: auto-generate m_payment_id if not provided
     # m_payment_id = serializers.CharField(required=False)
+    payfast_url = serializers.SerializerMethodField()
+
     
     class Meta:
         model = PayFastPayment
         fields = [
             # 'm_payment_id',
+            'id',
             'user',
             'amount',
             'item_name',
@@ -137,6 +140,7 @@ class PayFastPaymentCreateSerializer(serializers.ModelSerializer):
             'name_first',
             'name_last',
             'email_address',
+            'payfast_url',
             'cell_number',
             'custom_str1',
             'custom_str2',
@@ -168,6 +172,13 @@ class PayFastPaymentCreateSerializer(serializers.ModelSerializer):
             validated_data['m_payment_id'] = str(uuid.uuid4())
         
         return super().create(validated_data)
+    
+    def get_payfast_url(self, obj):
+        """Get the absolute URL for this payment"""
+        request = self.context.get('request')
+        if request:
+            return request.build_absolute_uri(obj.get_payfast_url())
+        return obj.get_payfast_url()
 
 
 class PayFastPaymentUpdateSerializer(serializers.ModelSerializer):

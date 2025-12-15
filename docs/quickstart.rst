@@ -158,8 +158,8 @@ Create a view to handle the checkout process:
 
 Note: Payment Outcome Templates
 ----------------------------
-These ``payment_cancel_view``: 
-These ``payment_success_view``: 
+The ``payment_cancel_view`` 
+and ``payment_success_view``: 
 
 Are already defined with beautiful templates
 

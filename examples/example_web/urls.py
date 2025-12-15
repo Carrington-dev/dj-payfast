@@ -20,6 +20,6 @@ from django.urls import include, path
 urlpatterns = [
     path('grappelli/', include('grappelli.urls')), # grappelli URLS
     path('admin/', admin.site.urls),
-    path('payments/', include('payfast.urls')),
+    path('payfast/', include('payfast.urls')),
     path("", include('store.urls')),
 ]
