@@ -29,46 +29,39 @@ PayFast is South Africa's leading payment gateway, trusted by thousands of busin
 Key Features
 ~~~~~~~~~~~~
 
-* 🔐 **Secure**: Built-in signature verification and validation
-* 🚀 **Easy to Use**: Simple API similar to dj-stripe and dj-paypal
-* 📦 **Complete**: Models, forms, views, and webhooks included
-* 🧪 **Test Mode**: Sandbox support for development and testing
-* 📊 **Admin Interface**: Full Django admin integration
-* 🔔 **Webhooks**: Automatic ITN (Instant Transaction Notification) handling
-* 💾 **Database Tracking**: Complete payment history and audit trail
-* 🛠️ **Customizable**: Support for custom fields and metadata
-* 📱 **Mobile Ready**: Works with PayFast's mobile payment options
+*  **Secure**: Built-in signature verification and validation
+*  **Easy to Use**: Simple API similar to dj-stripe and dj-paypal
+*  **Complete**: Models, forms, views, and webhooks included
+*  **Test Mode**: Sandbox support for development and testing
+*  **Admin Interface**: Full Django admin integration
+*  **Webhooks**: Automatic ITN (Instant Transaction Notification) handling
+*  **Database Tracking**: Complete payment history and audit trail
+*  **Customizable**: Support for custom fields and metadata
+*  **Mobile Ready**: Works with PayFast's mobile payment options
 
 Quick Example
 ~~~~~~~~~~~~~
 
 .. code-block:: python
+   INSTALLED_APPS += [
+      'payfast'
+   ]
+   
+   # On Main Projects urls.py
+   urlpatterns += [
+      path('payfast', include("payfast.urls"))
+   ]
 
-   from django.shortcuts import render
-   from payfast.models import PayFastPayment
-   from payfast.forms import PayFastPaymentForm
-   import uuid
 
-   def checkout(request):
-       # Create a payment
-       payment = PayFastPayment.objects.create(
-           user=request.user,
-           m_payment_id=str(uuid.uuid4()),
-           amount=299.99,
-           item_name='Premium Subscription',
-           email_address=request.user.email,
-       )
-       
-       # Generate payment form
-       form = PayFastPaymentForm(initial={
-           'amount': payment.amount,
-           'item_name': payment.item_name,
-           'm_payment_id': payment.m_payment_id,
-           'email_address': payment.email_address,
-           'notify_url': request.build_absolute_uri('/payfast/notify/'),
-       })
-       
-       return render(request, 'checkout.html', {'form': form})
+.. code-block:: json
+   // perform a post request on
+   ```
+   /payfast/payments
+   ```
+   
+   
+
+   
 
 Why dj-payfast?
 ~~~~~~~~~~~~~~~
