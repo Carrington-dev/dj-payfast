@@ -63,9 +63,9 @@ Add App to Main Projects urls.py
 
 Added payfast application
 
-.. code-block:: bash
+.. code-block:: python
    # perform a post request on
-   /payfast/payments
+   .. /payfast/payments
    
    # some fields are not required
    # This is a post request
