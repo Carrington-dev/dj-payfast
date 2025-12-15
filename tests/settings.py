@@ -59,7 +59,7 @@ DATABASES = {
 PAYFAST_MERCHANT_ID = config('PAYFAST_MERCHANT_ID', default="pass")
 PAYFAST_MERCHANT_KEY = config('PAYFAST_MERCHANT_KEY', default="pass")
 PAYFAST_PASSPHRASE = config('PAYFAST_PASSPHRASE', default="pass")
-PAYFAST_TEST_MODE = config('PAYFAST_TEST_MODE', cast=bool)
+PAYFAST_TEST_MODE = config('PAYFAST_TEST_MODE', default=True, cast=bool)
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'
