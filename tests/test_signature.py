@@ -6,9 +6,9 @@ from decouple import config
 
 def test_signature():
     # Your PayFast credentials
-    merchant_id = config('PAYFAST_MERCHANT_ID')  # Your merchant ID
-    merchant_key = config('PAYFAST_MERCHANT_KEY')  # Your merchant key
-    passphrase = config('PAYFAST_PASSPHRASE')  # Your passphrase
+    merchant_id = config('PAYFAST_MERCHANT_ID', default="pass")  # Your merchant ID
+    merchant_key = config('PAYFAST_MERCHANT_KEY', default="pass")  # Your merchant key
+    passphrase = config('PAYFAST_PASSPHRASE', default="pass")  # Your passphrase
     
     # Test payment data
     data = {
