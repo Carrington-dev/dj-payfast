@@ -42,7 +42,12 @@ Key Features
 Quick Example
 ~~~~~~~~~~~~~
 
+.. code-block:: bash
+
+   pip install dj-payfast
+
 .. code-block:: python
+
    INSTALLED_APPS += [
       'payfast'
    ]
