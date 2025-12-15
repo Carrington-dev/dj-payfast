@@ -158,13 +158,16 @@ Create a view to handle the checkout process:
 
 Note: Payment Outcome Templates
 ----------------------------
-Use ``payfast/payments``: 
+These ``payment_cancel_view``: 
+These ``payment_success_view``: 
+
+Are already defined with beautiful templates
 
 
-Step 7: Create the Template
+Step 7: Override Templates
 ----------------------------
 
-Create ``templates/checkout.html``:
+Create ``templates/payfast/checkout.html``:
 
 .. code-block:: html
 
@@ -180,12 +183,7 @@ Create ``templates/checkout.html``:
            <h3>Amount: R{{ payment.amount }}</h3>
        </div>
 
-       <form action="{{ form.get_action_url }}" method="post" id="payfast-form">
-           {{ form.as_p }}
-           <button type="submit" class="btn btn-primary">
-               Pay with PayFast
-           </button>
-       </form>
+      ..  Add extra Information
 
        <div class="payment-info">
            <p>You will be redirected to PayFast to complete your payment securely.</p>
@@ -218,7 +216,7 @@ Step 9: Test Your Integration
 
       python manage.py runserver
 
-2. Visit ``http://localhost:8000/checkout/``
+2. Visit ``http://localhost:8000/payfast/checkout/``
 
 3. Fill in the payment form and click "Pay with PayFast"
 
