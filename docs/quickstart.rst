@@ -266,6 +266,7 @@ You now have a working PayFast integration! Here's what to explore next:
 * :doc:`usage` - Learn about advanced features
 * :doc:`webhooks` - Understand webhook processing in detail
 * :doc:`testing` - Learn how to test payments
+* :doc:`serializers` - Best way to use serializers
 * :doc:`security` - Best practices for secure payments
 * :doc:`api` - Complete API reference
 

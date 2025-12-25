@@ -225,6 +225,7 @@ Documentation Contents
    forms
    views
    utils
+   serializers
    signals
 
 .. toctree::
