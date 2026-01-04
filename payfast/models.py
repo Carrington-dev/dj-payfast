@@ -7,6 +7,8 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.shortcuts import reverse
+from django.db import transaction
+
 
 from payfast.utils import generate_pf_id
 
@@ -79,12 +81,15 @@ class PayFastPayment(models.Model):
     def __str__(self):
         return f'Payment {self.m_payment_id} - {self.status}'
     
+    
+    @transaction.atomic
     def mark_complete(self):
         """Mark payment as complete"""
         self.status = 'complete'
         self.completed_at = timezone.now()
         self.save()
     
+    @transaction.atomic
     def mark_failed(self):
         """Mark payment as failed"""
         self.status = 'failed'
