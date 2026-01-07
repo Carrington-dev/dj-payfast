@@ -11,6 +11,7 @@ from urllib.parse import urlencode
 from collections import OrderedDict
 
 
+
 def generate_pf_id(prefix="PF", length=11):
     """
     Generate an ID like PF18K07G4P9
@@ -111,3 +112,25 @@ def validate_ip(ip_address):
     # For now, we'll return True (implement proper validation in production)
     return True
 
+def clear_expired_pending_payments(user, hours=24):
+    """
+    Clear pending payments older than specified hours.
+    Call this periodically or on user login.
+    
+    Args:
+        user: The user whose payments to check
+        hours: How many hours old before considering expired
+    """
+    from django.utils import timezone
+    from datetime import timedelta
+    from .models import PayFastPayment
+    
+    cutoff_time = timezone.now() - timedelta(hours=hours)
+    
+    expired_count = PayFastPayment.objects.filter(
+        user=user,
+        status='pending',
+        created_at__lt=cutoff_time
+    ).update(status='cancelled')
+    
+    return expired_count
