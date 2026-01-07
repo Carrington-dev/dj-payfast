@@ -277,6 +277,7 @@ This library is inspired by other excellent Django payment libraries:
 
 * `dj-stripe <https://github.com/dj-stripe/dj-stripe>`_
 * `dj-paypal <https://github.com/dj-paypal/dj-paypal>`_
+* `django-paddle <https://github.com/paddle-python/dj-paddle>`_
 * `django-paypal <https://github.com/spookylukey/django-paypal>`_
 
 Special thanks to PayFast for providing a reliable payment gateway for South African businesses.
