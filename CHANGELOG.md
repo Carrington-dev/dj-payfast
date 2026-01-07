@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.5] - 2025-12-10
 ## [0.1.6] - 2025-12-12
 ## [0.1.7] - 2026-01-04
+## [0.1.8] - 2026-01-07
 
 ### Added
 - Initial release of dj-payfast

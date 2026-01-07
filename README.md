@@ -3,7 +3,7 @@
 [![payfast Verified Partner](https://img.shields.io/static/v1?label=payfast&message=Verified%20Partner&color=red&style=for-the-badge)](https://payfast.com/docs/libraries#community-libraries)
 <br>
 
-[![CI tests](https://github.com/Carrington-dev/dj-payfast/blob/main/assets/img/badge.svg)](https://github.com/dj-payfast/dj-payfast/actions/workflows/ci.yml)
+<!-- [![CI tests](https://github.com/Carrington-dev/dj-payfast/blob/main/assets/img/badge.svg)](https://github.com/dj-payfast/dj-payfast/actions/workflows/ci.yml) -->
 [![Package Downloads](https://img.shields.io/pypi/dm/dj-payfast)](https://pypi.org/project/dj-payfast/)
 
 [![Documentation](https://img.shields.io/static/v1?label=Docs&message=READ&color=informational&style=plastic)](https://carrington-dev.github.io/dj-payfast/)
