@@ -11,4 +11,4 @@ lfx_crowdfunding: # Replace with a single LFX Crowdfunding project-name e.g., cl
 polar: # Replace with a single Polar username
 buy_me_a_coffee: # Replace with a single Buy Me a Coffee username
 thanks_dev: # Replace with a single thanks.dev username
-custom: [https://www.paypal.com/ncp/payment/D7J7QSRR3WQFA', 'https://khanoit.co.za/support-me', 'https://www.buymeacoffee.com/carrington-dev']
+custom: ['https://www.paypal.com/ncp/payment/D7J7QSRR3WQFA', 'https://khanoit.co.za/support-me', 'https://www.buymeacoffee.com/carrington-dev']
