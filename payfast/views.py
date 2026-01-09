@@ -18,7 +18,7 @@ from payfast.conf import PAYFAST_URL
 from payfast.pagination import PayfastPagination
 from payfast.models import PayFastPayment, PayFastNotification
 from payfast.serializers import PayFastPaymentCreateSerializer, PayFastPaymentListSerializer, PayFastPaymentUpdateSerializer, PayFastPaymentDetailSerializer
-from payfast.utils import generateSignature, validate_ip, generate_pf_id
+from payfast.utils import generate_signature, validate_ip, generate_pf_id
 
 
 
@@ -138,7 +138,7 @@ def checkout_view(request):
         initial_data['custom_int1'] = str(payment.custom_int1)
     
     # Generate signature
-    signature = generateSignature(initial_data, settings.PAYFAST_PASSPHRASE)
+    signature = generate_signature(initial_data, settings.PAYFAST_PASSPHRASE)
     initial_data['signature'] = signature
     
     # Generate HTML form
@@ -215,7 +215,7 @@ def payfast_payment_view(request, pk):
         initial_data['custom_int1'] = str(payment.custom_int1)
     
     # Generate signature
-    signature = generateSignature(initial_data, settings.PAYFAST_PASSPHRASE)
+    signature = generate_signature(initial_data, settings.PAYFAST_PASSPHRASE)
     initial_data['signature'] = signature
     
     # Generate HTML form

@@ -1,7 +1,7 @@
 import hashlib
 import urllib.parse
 
-def generateSignature(dataArray, passPhrase = ''):
+def generate_signature(dataArray, passPhrase = ''):
     payload = ""
     for key in dataArray:
         # Get all the data from Payfast and prepare parameter string

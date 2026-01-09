@@ -29,7 +29,7 @@ def generate_pf_id(prefix="PF", length=11):
     return prefix + random_part
 
 
-def generateSignature(dataArray, passPhrase = ''):
+def generate_signature(dataArray, passPhrase = ''):
     payload = ""
     for key in dataArray:
         # Get all the data from Payfast and prepare parameter string
@@ -39,38 +39,6 @@ def generateSignature(dataArray, passPhrase = ''):
     if passPhrase != '':
         payload += f"&passphrase={passPhrase}"
     return hashlib.md5(payload.encode()).hexdigest()
-
-
-def generate_signature(data_dict, passphrase=None):
-    """
-    Generate PayFast security signature
-    
-    Args:
-        data_dict: Dictionary of payment data
-        passphrase: PayFast passphrase (optional but recommended)
-    
-    Returns:
-        MD5 signature string
-    """
-    from . import conf
-    
-    # Remove signature if present
-    data = {k: v for k, v in data_dict.items() if k != 'signature'}
-    
-    # Sort by keys
-    ordered_data = OrderedDict(sorted(data.items()))
-    
-    # Create parameter string
-    param_string = urlencode(ordered_data)
-    
-    # Add passphrase if provided
-    if passphrase or conf.PAYFAST_PASSPHRASE:
-        param_string += f'&passphrase={passphrase or conf.PAYFAST_PASSPHRASE}'
-    
-    # Generate MD5 signature
-    signature = hashlib.md5(param_string.encode()).hexdigest()
-    
-    return signature
 
 
 def verify_signature(data_dict, passphrase=None):
@@ -85,7 +53,7 @@ def verify_signature(data_dict, passphrase=None):
         Boolean indicating if signature is valid
     """
     received_signature = data_dict.get('signature', '')
-    calculated_signature = generateSignature(data_dict, passphrase)
+    calculated_signature = generate_signature(data_dict, passphrase)
     
     return received_signature == calculated_signature
 
