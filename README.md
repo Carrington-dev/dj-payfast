@@ -196,7 +196,7 @@ This request returns something like this
     "item_description": "1 month premium access",
     "name_first": "",
     "name_last": "",
-    "email_address": "crn96m@gmail.com",
+    "email_address": "your.email@gmail.com",
     "m_payment_id": "3a280ceb-344c-48d1-8e9c-7945f3f1194a",
     "payfast_url": "http://127.0.0.1:2000/payments/checkout/2"
 }
