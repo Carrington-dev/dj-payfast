@@ -210,8 +210,8 @@ class PayFastPaymentUpdateSerializer(serializers.ModelSerializer):
             'custom_int4',
             'custom_int5',
             'email_address',
-            'merchant_id',
-            'signature'
+            # 'merchant_id',
+            # 'signature'
         ]
     
     def validate_status(self, value):
