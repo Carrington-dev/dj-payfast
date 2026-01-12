@@ -255,9 +255,11 @@ def process_order_checkout(request, order_id):
 
 ## Funding and Support
 
-<a href="https://payfast.io">
+<!-- <a href="https://payfast.io">
   <img alt="Payfast Logo" src="https://github.com/Carrington-dev/dj-payfast/blob/main/assets/img/payfast.webp" width="250px" />
-</a>
+</a> -->
+[![payfast Verified Partner](https://img.shields.io/static/v1?label=payfast&message=Verified%20Partner&color=red&style=for-the-badge)](https://payfast.com/docs/libraries#community-libraries)
+<br>
 
 You can now become a sponsor to dj-payfast with [GitHub Sponsors](https://github.com/sponsors/dj-payfast).
 
@@ -274,10 +276,13 @@ an open ledger on how donations are spent.
 
 ## Our Gold sponsors
 
-<a href="https://payfast.io">
+[![payfast Verified Partner](https://img.shields.io/static/v1?label=payfast&message=Verified%20Partner&color=red&style=for-the-badge)](https://payfast.com/docs/libraries#community-libraries)
+<br>
+
 <!--   <img alt="Stemgon Logo" src="./logos/payfast_blurple.svg" width="250px" /> -->
+<!-- <a href="https://payfast.io">
   <img alt="Payfast Logo" src="https://github.com/Carrington-dev/dj-payfast/blob/main/assets/img/payfast.webp" width="250px" />
-</a>
+</a> -->
 
 ## Similar libraries
 

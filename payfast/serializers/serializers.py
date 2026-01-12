@@ -14,8 +14,8 @@ Note: Requires djangorestframework to be installed:
 
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from .models import PayFastPayment, PayFastNotification
-from .utils import generate_signature
+from payfast.models import PayFastPayment, PayFastNotification
+from payfast.utils import generate_signature
 import uuid
 
 User = get_user_model()
@@ -114,8 +114,6 @@ class PayFastPaymentDetailSerializer(serializers.ModelSerializer):
         return obj.get_payfast_url()
 
     
-
-
 class PayFastPaymentCreateSerializer(serializers.ModelSerializer):
     """
     Serializer for creating new PayFast payments
@@ -323,7 +321,7 @@ class PayFastFormDataSerializer(serializers.Serializer):
     
     def to_representation(self, instance):
         """Add merchant details and signature to output"""
-        from . import conf
+        from .. import conf
         
         data = super().to_representation(instance)
         
