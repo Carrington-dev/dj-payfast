@@ -206,6 +206,8 @@ Documentation Contents
    installation
    quickstart
    configuration
+   api
+   
 
 .. toctree::
    :maxdepth: 2
