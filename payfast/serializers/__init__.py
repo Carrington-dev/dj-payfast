@@ -1,4 +1,4 @@
-from .serializers import (
+from .normal_payments import (
     PayFastFormDataSerializer, 
     PayFastNotificationSerializer, 
     PayFastPaymentExportSerializer,
