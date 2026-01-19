@@ -21,7 +21,6 @@ from payfast.serializers import PayFastPaymentCreateSerializer, PayFastPaymentLi
 from payfast.utils import generate_signature, validate_ip, generate_pf_id
 
 
-
 def get_client_ip(request):
     """Get client IP address from request"""
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -30,10 +29,6 @@ def get_client_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
-
-
-
-
 
 
 @login_required
