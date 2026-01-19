@@ -100,11 +100,6 @@ class PayFastPayment(models.Model):
 
     def get_absolute_url(self):
         return reverse("payfast:payfast_payment_view", kwargs={"pk": self.pk})
-    
-
-    
-    
-
 
 class PayFastNotification(models.Model):
     """Model to log all PayFast ITN notifications"""
@@ -129,4 +124,3 @@ class PayFastNotification(models.Model):
     
     def __str__(self):
         return f'Notification {self.id} - {"Valid" if self.is_valid else "Invalid"}'
-
