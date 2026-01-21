@@ -129,8 +129,8 @@ copyright = '2025, Carrington Muleya'
 author = 'Carrington Muleya'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.5'
-version = '0.1'
+release = '0.1.10'
+version = '0.1.10'
 
 
 # -- General configuration ---------------------------------------------------
