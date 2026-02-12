@@ -1,12 +1,6 @@
-
-
-# ============================================================================
-# payfast/forms.py
-# ============================================================================
-
 from django import forms
-from . import conf
-from .utils import generate_signature
+from payfast import conf
+from payfast.utils import generate_signature
 
 
 class PayFastPaymentForm(forms.Form):
@@ -54,8 +48,13 @@ class PayFastPaymentForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
-        # Generate signature if initial data provided
+        # Set initial values on field instances from self.initial
         if self.initial:
+            for field_name, value in self.initial.items():
+                if field_name in self.fields and value is not None and value != '':
+                    self.fields[field_name].initial = value
+            
+            # Generate signature after setting all initial values
             data = {k: str(v) for k, v in self.initial.items() if v is not None and v != ''}
             signature = generate_signature(data)
             self.fields['signature'].initial = signature

@@ -5,6 +5,7 @@ from collections import OrderedDict
 from decouple import config
 
 def test_signature():
+    """Test PayFast signature generation"""
     # Your PayFast credentials
     merchant_id = config('PAYFAST_MERCHANT_ID', default="pass")  # Your merchant ID
     merchant_key = config('PAYFAST_MERCHANT_KEY', default="pass")  # Your merchant key
@@ -44,7 +45,12 @@ def test_signature():
     print("Generated signature:")
     print(signature)
     
-    return signature
+    # Assert that signature is not empty and is 32 characters (MD5 hash length)
+    assert signature is not None, "Signature should not be None"
+    assert len(signature) == 32, f"MD5 signature should be 32 characters, got {len(signature)}"
+    assert isinstance(signature, str), f"Signature should be a string, got {type(signature)}"
+    
+    # Don't return anything - test functions should return None
 
 if __name__ == '__main__':
     test_signature()

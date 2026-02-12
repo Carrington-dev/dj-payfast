@@ -145,7 +145,7 @@ PAYFAST_TEST_MODE=True
 
 **Sandbox (Testing):**
 1. Sign up at [sandbox.payfast.co.za](https://sandbox.payfast.co.za)
-2. Navigate to **Settings → Integration**
+2. Navigate to **Home → Account Information**
 3. Copy your Merchant ID and Merchant Key
 4. Generate a passphrase
 

@@ -1,4 +1,4 @@
-__version__ = '0.1.10'
+__version__ = '0.1.11'
 __title__ = 'dj-payfast'
 __author__ = 'Carrington Muleya'
 __license__ = 'MIT'

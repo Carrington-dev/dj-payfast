@@ -278,7 +278,7 @@ class PayFastNotifyView(View):
     def post(self, request, *args, **kwargs):
         # Get POST data
         post_data = request.POST.dict()
-        print(post_data)
+        # print(post_data)
         # Get IP address
         ip_address = get_client_ip(request)
         
