@@ -223,10 +223,10 @@ Documentation Contents
    :maxdepth: 2
    :caption: SETTINGS
 
-   usage
-   webhooks
-   testing
-   security
+   PAYFAST_MERCHANT_ID
+   PAYFAST_MERCHANT_KEY 
+   PAYFAST_PASSPHRASE
+   PAYFAST_TEST_MODE
 
 .. toctree::
    :maxdepth: 2
