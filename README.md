@@ -135,10 +135,10 @@ Create a `.env` file:
 
 ```bash
 # .env
-PAYFAST_MERCHANT_ID=10023192
-PAYFAST_MERCHANT_KEY=ecs5ue9vb4i70
-PAYFAST_PASSPHRASE=jt7NOE43FZPn
-PAYFAST_TEST_MODE=True
+PAYFAST_MERCHANT_ID = 'your_merchant_id'           # Your merchant ID
+PAYFAST_MERCHANT_KEY = 'your_merchant_key'     # Your merchant key
+PAYFAST_PASSPHRASE = 'your_passphrase'        # Your passphrase (recommended)
+PAYFAST_TEST_MODE = True                    # False for production
 ```
 
 ### Getting PayFast Credentials
