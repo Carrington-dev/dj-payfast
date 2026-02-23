@@ -201,7 +201,7 @@ Documentation Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Getting Started
+   :caption: GETTING STARTED
 
    installation
    quickstart
@@ -211,7 +211,17 @@ Documentation Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: User Guide
+   :caption: USER GUIDE
+
+   usage
+   webhooks
+   testing
+   security
+   
+
+.. toctree::
+   :maxdepth: 2
+   :caption: SETTINGS
 
    usage
    webhooks
@@ -220,7 +230,7 @@ Documentation Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Reference
+   :caption: REFERENCE
 
    api
    models
@@ -232,7 +242,7 @@ Documentation Contents
 
 .. toctree::
    :maxdepth: 1
-   :caption: Additional Information
+   :caption: ADDITIONAL RESOURCES
 
    changelog
    contributing
