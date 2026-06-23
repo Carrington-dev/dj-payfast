@@ -166,6 +166,7 @@ Create a payment (post) endpoint at: `/payfast/payments/`
 ```json
 // some fields are not required
 // This is a post request
+// Just changed it to this
 {
     "m_payment_id": "",
     "user": null,
